@@ -12,3 +12,14 @@
 - 已核实：Git 2.45.1、GitHub CLI 2.96.0 可用，账号为 `yukino-miku`；Python Launcher 检测到 Python 3.13 和 3.8；原始资料共 7 个文件。
 - Git 未配置作者信息，本项目使用已登录账号 `yukino-miku` 及 GitHub noreply 地址作为仓库级提交身份，不修改全局配置。
 - 下一步：完成首次提交和远端同步，再原样归档材料并校验哈希。同步结果由 Git 记录和步骤 002 记载。
+
+## 2026-09-10 · 步骤 002 · 归档赛题及附件
+
+- 步骤 001 首次提交 `ad51d92` 已成功推送；GitHub 已确认仓库为 PRIVATE，默认分支为 `main`。
+- 原样复制 7 个文件至 `materials/original/`：`A题.pdf`、`附件/附件1.xlsx`、`附件/附件2.xlsx`、`附件/附件3/result1.xlsx` 至 `result4.xlsx`。
+- 原始文件合计 620,233 字节；每个副本均与来源文件 SHA256 一致，来源文件未修改。
+- 已生成 `materials/manifest.json`，包含来源、导入时间、相对路径、大小与 SHA256。
+- 已实际运行 `scripts/verify-materials.ps1`，返回 `MATERIALS_OK files=7 bytes=620233`。
+- 两个 PowerShell 脚本语法解析通过，并经独立只读审查；未发现阻断初始化的问题。
+- 本步仅复制和校验文件，未提取题目正文、分析表格或开始求解。
+- 下一步：用同步脚本提交本步，确认材料已入库、本地与远端一致，再记录最终验收。
