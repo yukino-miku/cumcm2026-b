@@ -49,8 +49,10 @@ try {
 
     Invoke-Git -GitArguments @('push', '--set-upstream', 'origin', 'main')
     $localHead = Invoke-Git -GitArguments @('rev-parse', 'HEAD')
-    $remoteRef = Invoke-Git -GitArguments @('ls-remote', '--exit-code', $remote, 'refs/heads/main')
-    $remoteHead = ($remoteRef -split '\s+')[0]
+    $remoteHead = & gh api --hostname github.com repos/yukino-miku/cumcm2026-a/branches/main --jq .commit.sha
+    if ($LASTEXITCODE -ne 0) {
+        throw 'The commit was pushed, but GitHub API verification failed. Retry syncing.'
+    }
     if ($localHead -ne $remoteHead) {
         throw "Verification failed: local $localHead differs from remote $remoteHead."
     }
