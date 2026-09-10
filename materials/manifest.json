@@ -1,44 +1,89 @@
 {
-  "schema_version": 1,
-  "source_directory": "D:\\资料\\CUMCM2026\\A题",
+  "schema_version": 2,
+  "problem": "B",
   "archive_directory": "materials/original",
-  "imported_at": "2026-09-10T18:52:26.5311833+08:00",
+  "imported_at": "2026-09-10T19:33:18.9829229+08:00",
   "hash_algorithm": "SHA256",
+  "sources": [
+    {
+      "id": "problem",
+      "source_directory": "D:\\资料\\CUMCM2026\\B题",
+      "archive_prefix": "problem"
+    },
+    {
+      "id": "simulator",
+      "source_directory": "D:\\Tencent Files\\3200672080\\FileRecv\\CUMCM2026B",
+      "archive_prefix": "simulator"
+    }
+  ],
+  "excluded_files": [
+    {
+      "source_id": "problem",
+      "source_relative_path": "附件/~$附件1.docx",
+      "reason": "Word temporary lock file; not a contest attachment"
+    },
+    {
+      "source_id": "problem",
+      "source_relative_path": "附件/~$附件2.docx",
+      "reason": "Word temporary lock file; not a contest attachment"
+    }
+  ],
   "files": [
     {
-      "relative_path": "附件/附件1.xlsx",
-      "bytes": 16586,
-      "sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+      "source_id": "problem",
+      "source_relative_path": "附件/附件1.docx",
+      "relative_path": "problem/附件/附件1.docx",
+      "bytes": 33675,
+      "sha256": "20a27603ea81efa8f11658b3fa5b859a69aa3ff88fb3664d2abb80d740b47553",
+      "storage": "git"
     },
     {
-      "relative_path": "附件/附件2.xlsx",
-      "bytes": 11485,
-      "sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+      "source_id": "problem",
+      "source_relative_path": "附件/附件2.docx",
+      "relative_path": "problem/附件/附件2.docx",
+      "bytes": 57179,
+      "sha256": "c882513d5b7e0ec50f3068570ea55fdc1b5c4a5fa2d6e9e54e79b33cf0858cb2",
+      "storage": "git"
     },
     {
-      "relative_path": "附件/附件3/result1.xlsx",
-      "bytes": 10073,
-      "sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+      "source_id": "problem",
+      "source_relative_path": "B题.pdf",
+      "relative_path": "problem/B题.pdf",
+      "bytes": 514825,
+      "sha256": "81c992a9bee5376308c4768b58719b177f17d6ee1f9861577a851924c5a838ca",
+      "storage": "git"
     },
     {
-      "relative_path": "附件/附件3/result2.xlsx",
-      "bytes": 10073,
-      "sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+      "source_id": "simulator",
+      "source_relative_path": "CUMCM2026B/模拟器操作演示.mp4",
+      "relative_path": "simulator/CUMCM2026B/模拟器操作演示.mp4",
+      "bytes": 130689914,
+      "sha256": "b6c33adf34332d5c31a860051f969046c39b3e2bdfbc65bcf7941a520cc5ae5b",
+      "storage": "git-lfs"
     },
     {
-      "relative_path": "附件/附件3/result3.xlsx",
-      "bytes": 9345,
-      "sha256": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859"
+      "source_id": "simulator",
+      "source_relative_path": "CUMCM2026B/先读下载说明.pdf",
+      "relative_path": "simulator/CUMCM2026B/先读下载说明.pdf",
+      "bytes": 247476,
+      "sha256": "d743a8e0fbcbe9f92da7ec38d62f549168c5d758eff51b6b3744c0d9ace06c4d",
+      "storage": "git"
     },
     {
-      "relative_path": "附件/附件3/result4.xlsx",
-      "bytes": 9351,
-      "sha256": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac"
+      "source_id": "simulator",
+      "source_relative_path": "CUMCM2026B/Jammers-simulator-full-win64.7z",
+      "relative_path": "simulator/CUMCM2026B/Jammers-simulator-full-win64.7z",
+      "bytes": 236850965,
+      "sha256": "4ef8c5d054c6841b32871ca0e0a571fbf4df931ce6e46d85dbd732c48a90e2cf",
+      "storage": "git-lfs"
     },
     {
-      "relative_path": "A题.pdf",
-      "bytes": 553320,
-      "sha256": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736"
+      "source_id": "simulator",
+      "source_relative_path": "CUMCM2026B/Jammers-simulator-win64.7z",
+      "relative_path": "simulator/CUMCM2026B/Jammers-simulator-win64.7z",
+      "bytes": 6109513,
+      "sha256": "23cd362c256620b61d5be050655a6cc41a3868b1099231452947c1741f88f086",
+      "storage": "git-lfs"
     }
   ]
 }

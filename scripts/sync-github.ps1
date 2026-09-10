@@ -30,9 +30,9 @@ try {
     }
     $remote = Invoke-Git -GitArguments @('remote', 'get-url', '--push', '--all', 'origin')
     $allowedRemotes = @(
-        'https://github.com/yukino-miku/cumcm2026-a.git',
-        'https://github.com/yukino-miku/cumcm2026-a',
-        'git@github.com:yukino-miku/cumcm2026-a.git'
+        'https://github.com/yukino-miku/cumcm2026-b.git',
+        'https://github.com/yukino-miku/cumcm2026-b',
+        'git@github.com:yukino-miku/cumcm2026-b.git'
     )
     if (@($remote).Count -ne 1 -or $remote -notin $allowedRemotes) {
         throw 'Unexpected push destination. Review origin before syncing.'
@@ -49,7 +49,7 @@ try {
 
     Invoke-Git -GitArguments @('push', '--set-upstream', 'origin', 'main')
     $localHead = Invoke-Git -GitArguments @('rev-parse', 'HEAD')
-    $remoteHead = & gh api --hostname github.com repos/yukino-miku/cumcm2026-a/branches/main --jq .commit.sha
+    $remoteHead = & gh api --hostname github.com repos/yukino-miku/cumcm2026-b/branches/main --jq .commit.sha
     if ($LASTEXITCODE -ne 0) {
         throw 'The commit was pushed, but GitHub API verification failed. Retry syncing.'
     }
@@ -60,7 +60,7 @@ try {
     if ($remaining) {
         throw 'The commit was pushed, but new local changes remain. Review and sync again.'
     }
-    Write-Output "SYNC_OK $localHead https://github.com/yukino-miku/cumcm2026-a"
+    Write-Output "SYNC_OK $localHead https://github.com/yukino-miku/cumcm2026-b"
 } finally {
     Pop-Location
 }
