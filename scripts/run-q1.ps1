@@ -19,11 +19,14 @@ Push-Location -LiteralPath $projectRoot
 try {
     if (-not $SkipTests) {
         Write-Output '正在验证第一问的几何算法……'
-        & $PythonExe -m pytest tests/test_q1_geometry.py -q
+        & $PythonExe -X utf8 -m pytest tests/test_q1_geometry.py tests/test_q1_reference_polygons.py -q
         if ($LASTEXITCODE -ne 0) { throw '第一问测试未通过，已停止生成图表。' }
     }
+    Write-Output '正在验证四组通用算法输入并保存结果……'
+    & $PythonExe -X utf8 src/cumcm2026_b/q1_geometry.py --cases configs/q1_cases.json --output results/tables/第一问/通用算法输出.json
+    if ($LASTEXITCODE -ne 0) { throw '第一问通用算法运行失败。' }
     Write-Output '正在生成第一问的中文图表和构造算例记录……'
-    & $PythonExe scripts/build_q1_assets.py
+    & $PythonExe -X utf8 scripts/build_q1_assets.py
     if ($LASTEXITCODE -ne 0) { throw '第一问图表或实验记录生成失败。' }
     Write-Output '第一问复现完成，阅读入口：docs/第一问/阅读导航.md'
 } finally {

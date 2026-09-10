@@ -1,1 +1,1 @@
-"""CUMCM 2026 problem B project; modeling has not started."""
+"""2026 国赛 B 题：可复用建模算法，当前已实现第一问定位几何。"""

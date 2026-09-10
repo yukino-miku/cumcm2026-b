@@ -8,6 +8,7 @@
 *.yaml text eol=lf
 *.tex text eol=lf
 *.bib text eol=lf
+*.svg text eol=lf
 *.pdf binary
 *.xlsx binary
 *.xls binary
