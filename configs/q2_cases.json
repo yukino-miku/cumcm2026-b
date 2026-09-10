@@ -1,0 +1,39 @@
+{
+  "说明": "第二问构造算例，非官方模拟器测试。正式题面取目标圆心为原点；标准案例展示局部中心线近似，其他案例检验平移、圆域截断及不对称。",
+  "参数来源": {
+    "目标圆": "B题.pdf 第1页，圆心(0,0)，半径1800米",
+    "有效接收半径": "B题.pdf 第3页附录2(2)，1000至1500米",
+    "角度误差": "B题.pdf 第2页附录2(1)，[-1°,1°]",
+    "过近无示向度": "B题.pdf 第3页附录2(9)及附件2第2.4节，距离不超过5米返回near"
+  },
+  "physical": {
+    "target_center": [0.0, 0.0],
+    "target_radius": 1800.0,
+    "max_receive_radius": 1500.0,
+    "guaranteed_radius": 1000.0,
+    "half_width_deg": 1.0,
+    "near_radius": 5.0,
+    "safety_margin": 0.00001
+  },
+  "search": {
+    "grid_step": 25.0,
+    "angle_count": 65,
+    "final_angle_count": 257,
+    "eta": 0.05,
+    "thresholds": [0.02, 0.05, 0.1]
+  },
+  "cases": [
+    {"id": "standard", "name_zh": "标准中心构造", "station1": [0.0, 0.0], "bearing1_deg": 0.0, "purpose_zh": "未被目标圆截断的完整窄扇区；比较中心线解析策略与完整鲁棒模型"},
+    {"id": "off_center", "name_zh": "偏离圆心构造", "station1": [-700.0, 350.0], "bearing1_deg": 20.0, "purpose_zh": "首次检测点平移、示向方向旋转，核查几何策略可迁移性"},
+    {"id": "clipped", "name_zh": "目标圆明显截断构造", "station1": [1200.0, 0.0], "bearing1_deg": 0.0, "purpose_zh": "中心线可能距离上限降为600米，可靠域及最优策略随信息变化"},
+    {"id": "edge_asymmetric", "name_zh": "近圆边缘非对称构造", "station1": [1790.0, 0.0], "bearing1_deg": 89.0, "purpose_zh": "近切向窄扇区受到不同程度裁剪，展示候选区域不对称"}
+  ],
+  "sensitivity": {
+    "angle_half_widths_deg": [0.5, 1.0, 1.5, 2.0],
+    "guaranteed_radii_m": [950.0, 1000.0, 1050.0],
+    "angle_counts": [17, 33, 65, 129, 257, 513],
+    "boundary_counts": [16, 32, 64, 128],
+    "error_counts": [5, 9, 17, 33],
+    "grid_steps_m": [50.0, 25.0, 12.5]
+  }
+}
