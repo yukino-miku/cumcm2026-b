@@ -19,8 +19,7 @@
     "grid_step": 25.0,
     "angle_count": 65,
     "final_angle_count": 257,
-    "eta": 0.05,
-    "thresholds": [0.02, 0.05, 0.1]
+    "eta": 0.05
   },
   "cases": [
     {"id": "standard", "name_zh": "标准中心构造", "station1": [0.0, 0.0], "bearing1_deg": 0.0, "purpose_zh": "未被目标圆截断的完整窄扇区；比较中心线解析策略与完整鲁棒模型"},
@@ -34,6 +33,6 @@
     "angle_counts": [17, 33, 65, 129, 257, 513],
     "boundary_counts": [16, 32, 64, 128],
     "error_counts": [5, 9, 17, 33],
-    "grid_steps_m": [50.0, 25.0, 12.5]
+    "grid_steps_m": [50.0, 25.0, 12.5, 6.25]
   }
 }
