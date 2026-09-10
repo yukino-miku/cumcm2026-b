@@ -41,3 +41,6 @@ desktop.ini
 *.synctex.gz
 *.toc
 paper/**/*.log
+
+# 本机模拟器解压运行目录；原始压缩包已由 Git LFS 保存
+/materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/
