@@ -1,0 +1,43 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Credentials and local-only files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+local-only/
+.idea/
+.vscode/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+*.swp
+
+# LaTeX intermediates (final PDFs are tracked)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+paper/**/*.log
