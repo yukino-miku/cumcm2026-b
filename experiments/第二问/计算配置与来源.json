@@ -1,0 +1,171 @@
+{
+  "来源": "构造算例，非官方模拟器测试",
+  "configuration": {
+    "说明": "第二问构造算例，非官方模拟器测试。正式题面取目标圆心为原点；标准案例展示局部中心线近似，其他案例检验平移、圆域截断及不对称。",
+    "参数来源": {
+      "目标圆": "B题.pdf 第1页，圆心(0,0)，半径1800米",
+      "有效接收半径": "B题.pdf 第3页附录2(2)，1000至1500米",
+      "角度误差": "B题.pdf 第2页附录2(1)，[-1°,1°]",
+      "过近无示向度": "B题.pdf 第3页附录2(9)及附件2第2.4节，距离不超过5米返回near"
+    },
+    "physical": {
+      "target_center": [
+        0.0,
+        0.0
+      ],
+      "target_radius": 1800.0,
+      "max_receive_radius": 1500.0,
+      "guaranteed_radius": 1000.0,
+      "half_width_deg": 1.0,
+      "near_radius": 5.0,
+      "safety_margin": 1e-05
+    },
+    "search": {
+      "grid_step": 25.0,
+      "angle_count": 65,
+      "final_angle_count": 257,
+      "eta": 0.05
+    },
+    "cases": [
+      {
+        "id": "standard",
+        "name_zh": "标准中心构造",
+        "station1": [
+          0.0,
+          0.0
+        ],
+        "bearing1_deg": 0.0,
+        "purpose_zh": "未被目标圆截断的完整窄扇区；比较中心线解析策略与完整鲁棒模型"
+      },
+      {
+        "id": "off_center",
+        "name_zh": "偏离圆心构造",
+        "station1": [
+          -700.0,
+          350.0
+        ],
+        "bearing1_deg": 20.0,
+        "purpose_zh": "首次检测点平移、示向方向旋转，核查几何策略可迁移性"
+      },
+      {
+        "id": "clipped",
+        "name_zh": "目标圆明显截断构造",
+        "station1": [
+          1200.0,
+          0.0
+        ],
+        "bearing1_deg": 0.0,
+        "purpose_zh": "中心线可能距离上限降为600米，可靠域及最优策略随信息变化"
+      },
+      {
+        "id": "edge_asymmetric",
+        "name_zh": "近圆边缘非对称构造",
+        "station1": [
+          1790.0,
+          0.0
+        ],
+        "bearing1_deg": 89.0,
+        "purpose_zh": "近切向窄扇区受到不同程度裁剪，展示候选区域不对称"
+      }
+    ],
+    "sensitivity": {
+      "angle_half_widths_deg": [
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "guaranteed_radii_m": [
+        950.0,
+        1000.0,
+        1050.0
+      ],
+      "angle_counts": [
+        17,
+        33,
+        65,
+        129,
+        257,
+        513
+      ],
+      "boundary_counts": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "error_counts": [
+        5,
+        9,
+        17,
+        33
+      ],
+      "grid_steps_m": [
+        50.0,
+        25.0,
+        12.5,
+        6.25
+      ]
+    }
+  },
+  "计算代码SHA256": {
+    "src/cumcm2026_b/q1_geometry.py": "1ba4b57a8239b3b9b35fa336b34f4556f47de71c17150621ef7c904efaba12ea",
+    "src/cumcm2026_b/q2_physical_geometry.py": "ed4c35ded6f6c779881d3d2aa763f1ccc802d89a409f2946a008795a2aeb843f",
+    "src/cumcm2026_b/q2_active_localization.py": "a2167f36a0af873e193d34e7b5660a375b13b60cc669a28f061441ffcca4686e",
+    "scripts/q2_experiments.py": "28361e442e9a29012611301228e3e30bdb48e1267ed85c19ba5f3e71e1d5b7a1"
+  },
+  "输入SHA256": {
+    "configs/q2_cases.json": "7831c4bf894e7d6b52e767862b835f3286621e43770f9546b05037feda5e971a",
+    "results/tables/第一问/交会角扫描输入输出.json": "798ddf52455ac3e6f6ebdae5e7d5074c7018b3c92efde75b2834b0cc3d07cd1d"
+  },
+  "第一问受保护文件SHA256": {
+    "configs/q1_cases.json": "7b714395839f582a2469fdd4b6e2f94f6b38303a49344382c70ddf9c9bef306d",
+    "docs/第一问/思路与数学推导.md": "e62e96583f58ae66285399099df3137cbca3421ba7bdb2fd3672aa0187a64fb6",
+    "docs/第一问/阅读导航.md": "7d7a4ebcc6340d91de76af5f0b2d5cc2fe19448370cbc7e3ae569ea4bafff717",
+    "docs/第一问/验证与复现记录.md": "a63606b88acc9ce3a8cccebcf82ffa6b8042e89d71f56e2b5cbcc495f6750158",
+    "experiments/第一问/实验配置与环境.json": "1b9f85d468cdc7484fa87eb1f784731af2001df9cf8d4a0b3644d1c3d79ec879",
+    "experiments/第一问/构造实验报告.md": "45724c6f3f06302742a82b82c9b1fe91c4b644206bbfa95a5d3cd0ad305b0152",
+    "paper/sections/第一问_论文备用稿.md": "7399972284bccc011d5702def283638fb52b33567036605c44c8225aa4958523",
+    "results/figures/第一问/01_算法流程图.png": "e99dfc5e33b9a9d9039804540dd65bb7e35f7d1ab9cb5d78b5010b6105c2eb5f",
+    "results/figures/第一问/01_算法流程图.svg": "86659a1d2733826f3bb356d62538b69c97d0f968e9d22f3d9480653bad6bc7f8",
+    "results/figures/第一问/02_双站角域与定位区域.png": "8ea2f0228f350f80bb26d76220c0e1b6875f51d339745deea51e64dc46373695",
+    "results/figures/第一问/02_双站角域与定位区域.svg": "7647cbb523672a90b92a6d973b6f365258546ed94f34df4f9aaa6b3b4415f9b8",
+    "results/figures/第一问/03_同直径覆盖圆反例.png": "9ffd17b51597a4842e6caa218c3b5fd57e2e6e575ccde5da398168261a91cbad",
+    "results/figures/第一问/03_同直径覆盖圆反例.svg": "3b6e025876f74092c413beb4fba2966d13d6a22821fa638c05f379af94f4c202",
+    "results/figures/第一问/04_新增检测约束的区域嵌套.png": "d6ed607598d7a864a6b86b0ddc43fb534b095ea21c0f72781f44c731d096f34f",
+    "results/figures/第一问/04_新增检测约束的区域嵌套.svg": "0d12a58b18d636c5deaa9a5865bbb56fa41b36043886e2c203bb905fa8b93cd0",
+    "results/figures/第一问/05_构造交会角扫描.png": "75fab5533fccdbc82d37522a8c9898dd0c38ee2a0b40fbc5959238799902fb66",
+    "results/figures/第一问/05_构造交会角扫描.svg": "eb6ddb05919819629f3119e61a424bb8171bf52f2010feeb034caca1c6eef453",
+    "results/figures/第一问/06_构造误差半宽敏感性.png": "2374b8d9f96b08b301805ec9a6767aa8a1b020a5462879798601d7341b081fe6",
+    "results/figures/第一问/06_构造误差半宽敏感性.svg": "b337d1a5e2b1c643f655967eda4c84663103960b6ce6d379b4f212cbaa202630",
+    "results/tables/第一问/交会角扫描输入输出.json": "798ddf52455ac3e6f6ebdae5e7d5074c7018b3c92efde75b2834b0cc3d07cd1d",
+    "results/tables/第一问/构造算例汇总.md": "7e0ac38a45d88f96f786d609fcf3f8673dbf407a0297afc4f4e4f61657bd2bfc",
+    "results/tables/第一问/构造算例输入输出.json": "c9177eb3f64c73d4549baf7ca3565a5c7497933525f4f737497ac057cf53d18c",
+    "results/tables/第一问/误差半宽扫描输入输出.json": "092c869c84aa14b0c8407539031380fe86692081aead96ced6f679e2d0a3c4e9",
+    "results/tables/第一问/通用算法输出.json": "9eb7706875ff1973909a1be5eceeadd149aa1df2a8099c5d6d31daab1cf701a8",
+    "scripts/build_q1_assets.py": "348760704c6014e95796e386754cf3520543ea7c71ac5f33779f0c93149439bb",
+    "scripts/run-q1.ps1": "e6fde6ed2af36bb4241b55821d8cd5497743d6663291b2f61538f57e4dc4c7f5",
+    "src/cumcm2026_b/q1_geometry.py": "1ba4b57a8239b3b9b35fa336b34f4556f47de71c17150621ef7c904efaba12ea",
+    "tests/test_q1_geometry.py": "07df0d444830ac4ab8e33d9c5a4ee1f4b6e48ac47cac8d182ac2d1b4c0fdf0c2",
+    "tests/test_q1_reference_polygons.py": "6ddac3fd93d638347fc11facfe0bb5e6272ee27df650a7bcbb866d87b80d3ad1"
+  },
+  "生成时已有Git提交": "6db95cc507dbe686b200ab007972f34189d15e0d",
+  "版本说明": "源码和输入SHA256标识实际计算版本；生成时Git提交可能早于成果提交。仅重画时保留此计算记录。",
+  "Python": "3.12.14",
+  "NumPy": "2.3.5",
+  "SciPy": "1.18.1",
+  "主构造数量": 4,
+  "主构造记录数": [
+    7141,
+    7141,
+    7141,
+    6980
+  ],
+  "主构造目标验证点数": [
+    651,
+    646,
+    651,
+    646
+  ],
+  "独立场景核查总数": 29104
+}

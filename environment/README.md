@@ -28,6 +28,8 @@ Linux/macOS 可用 `python3.12 -m venv .venv` 建立环境，依次执行 `.venv
 
 ## 本机 Git 网络
 
+第二问沿用上述环境，不增加依赖。运行 `pwsh -NoProfile -File .\scripts\run-q2.ps1` 可依次测试、完整重算、绘图及验证来源。Linux/macOS 在同版本环境依次运行 `python -X utf8 -m pytest -q`、`python -X utf8 scripts/build_q2_assets.py`、`python -X utf8 scripts/verify_q2_results.py`。中文字体和来源哈希见 [第二问实验配置与环境](../experiments/第二问/实验配置与环境.json)。
+
 初始化时 Git 直连 `github.com:443` 出现连接失败，Windows 当前系统代理为 `127.0.0.1:10808`。已验证该代理可访问远端，并仅在本仓库 `.git/config` 设置 `http.proxy=http://127.0.0.1:10808`；未修改 Git 全局配置或系统代理。该设置不随克隆传递。后续代理端口或运行状态改变时，应按本机实际配置调整，避免直接在其他机器照搬。
 
 版本检查：

@@ -183,3 +183,14 @@ def test_invalid_target_error_and_sampling_inputs_fail_loudly(standard):
         robust_objective(standard, [750, 600], angle_count=2)
     with pytest.raises(ValueError):
         sampled_robust_objective(standard, [750, 600], [[0, 1500]])
+def test_clipped_tip_does_not_admit_tolerance_only_vertex():
+    """截断案例楔尖附近：用独立原函数防止接收约束外的伪顶点。"""
+    from cumcm2026_b.q1_geometry import solve_bearings
+    from cumcm2026_b.q2_active_localization import batch_two_station_diameters
+
+    stations = [[1200.0, 0.0], [1671.0, -461.0]]
+    angle = 134.61473901480807
+    exact = solve_bearings(stations, [0.0, angle])
+    values, states = batch_two_station_diameters(stations[0], 0.0, stations[1], [angle])
+    assert exact.kind == "polygon" and states[0] == "bounded"
+    assert abs(values[0] - exact.diameter) < 1e-7

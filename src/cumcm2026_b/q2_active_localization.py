@@ -82,13 +82,15 @@ def evaluate_detection(region: PhysicalRegion, station2: ArrayLike, target: Arra
 def batch_two_station_diameters(station1: ArrayLike, bearing1_deg: float,
                                station2: ArrayLike, bearings2_deg: ArrayLike,
                                half_width_deg: float = 1.0,
-                               *, tol: float = 1e-9) -> tuple[np.ndarray, np.ndarray]:
+                               *, tol: float = 1e-10) -> tuple[np.ndarray, np.ndarray]:
     """批量计算两个角楔的纯几何直径，返回直径及区域状态数组。
 
     复用第一问半平面构造：四边界的六种交点全部枚举并验约束；两个
     正向角楔存在公共方向，当且仅当中心角的圆周距离不大于2delta。
     有可行顶点且存在公共方向则无界，否则最远可行顶点对给出直径。
     无人工大框；空集明确返回 empty，调用鲁棒评价时对异常空集报错。
+    顶点筛选默认用1e-10归一化容差，避免窄楔尖端外微小违约交点
+    被接受并经几何放大；独立第一问原函数仍使用其既有默认容差。
     """
     first, second = np.asarray(station1, dtype=float), np.asarray(station2, dtype=float)
     angles = np.atleast_1d(np.asarray(bearings2_deg, dtype=float))

@@ -1,0 +1,649 @@
+{
+  "来源": "构造算例，非官方模拟器测试",
+  "rows": [
+    {
+      "half_width_deg": 0.5,
+      "fixed_strategy": {
+        "station": [
+          798.3026032002654,
+          602.2565182077152
+        ],
+        "diameter_m": 64.14674696161352,
+        "status": "finite",
+        "max_distance_m": 999.9999799999999,
+        "min_distance_m": 595.2671701196475,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999799999999,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": false,
+        "worst_observation_deg": 320.47985017912697,
+        "witness_target": [
+          1499.942884596257,
+          13.089803247560901
+        ],
+        "witness_error_deg": 0.5000000000000007,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -142.96831875650852,
+          -40.02014982087304
+        ],
+        "observation_interval_deg": [
+          -143.46831875650852,
+          -39.52014982087304
+        ]
+      },
+      "optimized_strategy": {
+        "station": [
+          808.4245736840494,
+          588.599752517586
+        ],
+        "diameter_m": 64.12385751274564,
+        "status": "finite",
+        "max_distance_m": 999.99998,
+        "min_distance_m": 581.522594702569,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.99998,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": true,
+        "worst_observation_deg": 320.7313819364858,
+        "witness_target": [
+          1499.942884596257,
+          13.089803247560901
+        ],
+        "witness_error_deg": 0.5000000000000007,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -143.94229393344744,
+          -39.768618063514225
+        ],
+        "observation_interval_deg": [
+          -144.44229393344744,
+          -39.268618063514225
+        ],
+        "local_station": [
+          808.4245736840494,
+          588.599752517586
+        ],
+        "q1_result": {
+          "kind": "polygon",
+          "vertices": [
+            [
+              1499.9428845962561,
+              13.089803247560894
+            ],
+            [
+              1531.7329933189442,
+              -13.367231323437636
+            ],
+            [
+              1558.248943448538,
+              -13.59863251456494
+            ],
+            [
+              1524.7484259822302,
+              13.306277927714461
+            ]
+          ],
+          "diameter": 64.12385751274564,
+          "diameter_pair": [
+            [
+              1499.9428845962561,
+              13.089803247560894
+            ],
+            [
+              1558.248943448538,
+              -13.59863251456494
+            ]
+          ],
+          "circle_center": [
+            1529.095914022397,
+            -0.2544146335020514
+          ],
+          "cover_radius": 32.06192875637282,
+          "max_center_distance": 32.061928756372915,
+          "coverage_excess": 9.71445127118109e-14,
+          "covered": true,
+          "A": [
+            [
+              -0.008726535498373935,
+              -0.9999619230641713
+            ],
+            [
+              -0.008726535498373935,
+              0.9999619230641713
+            ],
+            [
+              -0.6396888006859829,
+              -0.7686340080148216
+            ],
+            [
+              0.6261768598738426,
+              0.7796810502753893
+            ]
+          ],
+          "b": [
+            0.0,
+            0.0,
+            -969.5579328791508,
+            965.1368342290737
+          ],
+          "normalization_origin": [
+            404.2122868420247,
+            294.299876258793
+          ],
+          "normalization_scale": 499.99999,
+          "tolerance": 1e-09,
+          "feasible_point": [
+            1524.7484259822302,
+            13.306277927714461
+          ],
+          "kind_zh": "有界凸多边形",
+          "absolute_tolerance": 4.9999999e-07
+        }
+      },
+      "configuration": {
+        "grid_step_m": 50,
+        "angle_count": 65,
+        "local_steps_m": [
+          10.0,
+          2.0,
+          0.4
+        ],
+        "final_angle_count": 257,
+        "eta": 0.05,
+        "reception_lower_m": 1000.0,
+        "safety_margin_m": 1e-05,
+        "near_radius_m": 5.0,
+        "use_slsqp": true,
+        "model_note_zh": "物理域与可靠约束连续求值；鲁棒角度和外层选点为网格及局部细化近似。"
+      }
+    },
+    {
+      "half_width_deg": 1.0,
+      "fixed_strategy": {
+        "station": [
+          798.3026032002654,
+          602.2565182077152
+        ],
+        "diameter_m": 134.97449180326083,
+        "status": "finite",
+        "max_distance_m": 999.9999799999999,
+        "min_distance_m": 588.2324901319047,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999799999999,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": false,
+        "worst_observation_deg": 321.6056177776763,
+        "witness_target": [
+          1499.771542734587,
+          26.178609655925268
+        ],
+        "witness_error_deg": 1.0000000000000013,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -142.96831875650852,
+          -39.39438222232373
+        ],
+        "observation_interval_deg": [
+          -143.96831875650852,
+          -38.39438222232373
+        ]
+      },
+      "optimized_strategy": {
+        "station": [
+          798.3026032002654,
+          602.2565182077152
+        ],
+        "diameter_m": 134.97449180326083,
+        "status": "finite",
+        "max_distance_m": 999.9999799999999,
+        "min_distance_m": 588.2324901319047,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999799999999,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": true,
+        "worst_observation_deg": 321.6056177776763,
+        "witness_target": [
+          1499.771542734587,
+          26.178609655925268
+        ],
+        "witness_error_deg": 1.0000000000000013,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -142.96831875650852,
+          -39.39438222232373
+        ],
+        "observation_interval_deg": [
+          -143.96831875650852,
+          -38.39438222232373
+        ],
+        "local_station": [
+          798.3026032002654,
+          602.2565182077152
+        ],
+        "q1_result": {
+          "kind": "polygon",
+          "vertices": [
+            [
+              1499.7715427345875,
+              26.1786096559253
+            ],
+            [
+              1564.909475481712,
+              -27.315596501316236
+            ],
+            [
+              1623.2482584351474,
+              -28.333903745601617
+            ],
+            [
+              1550.7698189404534,
+              27.06878787832585
+            ]
+          ],
+          "diameter": 134.97449180326086,
+          "diameter_pair": [
+            [
+              1499.7715427345875,
+              26.1786096559253
+            ],
+            [
+              1623.2482584351474,
+              -28.333903745601617
+            ]
+          ],
+          "circle_center": [
+            1561.5099005848674,
+            -1.0776470448381588
+          ],
+          "cover_radius": 67.48724590163043,
+          "max_center_distance": 67.48724590163043,
+          "coverage_excess": 0.0,
+          "covered": true,
+          "A": [
+            [
+              -0.01745240643728351,
+              -0.9998476951563913
+            ],
+            [
+              -0.01745240643728351,
+              0.9998476951563913
+            ],
+            [
+              -0.6346547446158431,
+              -0.772795804295416
+            ],
+            [
+              0.6072979454695063,
+              0.79447416913863
+            ]
+          ],
+          "b": [
+            0.0,
+            0.0,
+            -972.0678451407152,
+            963.2847776978784
+          ],
+          "normalization_origin": [
+            399.1513016001327,
+            301.1282591038576
+          ],
+          "normalization_scale": 499.99999,
+          "tolerance": 1e-09,
+          "feasible_point": [
+            1550.7698189404534,
+            27.06878787832585
+          ],
+          "kind_zh": "有界凸多边形",
+          "absolute_tolerance": 4.9999999e-07
+        }
+      },
+      "configuration": {
+        "grid_step_m": 25.0,
+        "angle_count": 65,
+        "local_steps_m": [
+          10.0,
+          2.0,
+          0.4
+        ],
+        "final_angle_count": 257,
+        "eta": 0.05,
+        "reception_lower_m": 1000.0,
+        "safety_margin_m": 1e-05,
+        "near_radius_m": 5.0,
+        "use_slsqp": true,
+        "model_note_zh": "物理域与可靠约束连续求值；鲁棒角度和外层选点为网格及局部细化近似。"
+      }
+    },
+    {
+      "half_width_deg": 1.5,
+      "fixed_strategy": {
+        "station": [
+          798.3026032002654,
+          602.2565182077152
+        ],
+        "diameter_m": 213.7803836147303,
+        "status": "finite",
+        "max_distance_m": 999.9999799999999,
+        "min_distance_m": 581.1530139626037,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999799999999,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": false,
+        "worst_observation_deg": 322.7384749041935,
+        "witness_target": [
+          1499.485987463336,
+          39.26542246180973
+        ],
+        "witness_error_deg": 1.5000000000000022,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -142.96831875650852,
+          -38.76152509580653
+        ],
+        "observation_interval_deg": [
+          -144.46831875650852,
+          -37.261525095806526
+        ]
+      },
+      "optimized_strategy": {
+        "station": [
+          787.8052806360587,
+          615.9243458428942
+        ],
+        "diameter_m": 213.69351466973106,
+        "status": "finite",
+        "max_distance_m": 999.9999800000279,
+        "min_distance_m": 595.090945844748,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999800000279,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": true,
+        "worst_observation_deg": 322.4829252461675,
+        "witness_target": [
+          1499.485987463336,
+          39.26542246180973
+        ],
+        "witness_error_deg": 1.5000000000000022,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -141.98088345799923,
+          -39.01707475383253
+        ],
+        "observation_interval_deg": [
+          -143.48088345799923,
+          -37.51707475383253
+        ],
+        "local_station": [
+          787.8052806360587,
+          615.9243458428942
+        ],
+        "q1_result": {
+          "kind": "polygon",
+          "vertices": [
+            [
+              1499.485987463336,
+              39.26542246180975
+            ],
+            [
+              1599.6411717769736,
+              -41.888078262994156
+            ],
+            [
+              1696.1141146219218,
+              -44.41431117788062
+            ],
+            [
+              1578.1766147214219,
+              41.32600905542006
+            ]
+          ],
+          "diameter": 213.69351466973106,
+          "diameter_pair": [
+            [
+              1499.485987463336,
+              39.26542246180975
+            ],
+            [
+              1696.1141146219218,
+              -44.41431117788062
+            ]
+          ],
+          "circle_center": [
+            1597.8000510426286,
+            -2.574444358035464
+          ],
+          "cover_radius": 106.84675733486553,
+          "max_center_distance": 106.84675733486563,
+          "coverage_excess": 9.714451271181362e-14,
+          "covered": true,
+          "A": [
+            [
+              -0.026176948307873153,
+              -0.9996573249755573
+            ],
+            [
+              -0.026176948307873153,
+              0.9996573249755573
+            ],
+            [
+              -0.6295519608925852,
+              -0.7769583827569536
+            ],
+            [
+              0.5880263218874355,
+              0.8088417921741766
+            ]
+          ],
+          "b": [
+            0.0,
+            0.0,
+            -974.5119428726939,
+            961.4355932711944
+          ],
+          "normalization_origin": [
+            393.90264031802934,
+            307.9621729214471
+          ],
+          "normalization_scale": 499.99999000001395,
+          "tolerance": 1e-09,
+          "feasible_point": [
+            1578.1766147214219,
+            41.32600905542006
+          ],
+          "kind_zh": "有界凸多边形",
+          "absolute_tolerance": 4.99999990000014e-07
+        }
+      },
+      "configuration": {
+        "grid_step_m": 50,
+        "angle_count": 65,
+        "local_steps_m": [
+          10.0,
+          2.0,
+          0.4
+        ],
+        "final_angle_count": 257,
+        "eta": 0.05,
+        "reception_lower_m": 1000.0,
+        "safety_margin_m": 1e-05,
+        "near_radius_m": 5.0,
+        "use_slsqp": true,
+        "model_note_zh": "物理域与可靠约束连续求值；鲁棒角度和外层选点为网格及局部细化近似。"
+      }
+    },
+    {
+      "half_width_deg": 2.0,
+      "fixed_strategy": {
+        "station": [
+          798.3026032002654,
+          602.2565182077152
+        ],
+        "diameter_m": 302.2184264517111,
+        "status": "finite",
+        "max_distance_m": 999.9999799999999,
+        "min_distance_m": 574.029280741264,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999799999999,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": false,
+        "worst_observation_deg": 323.87860392389274,
+        "witness_target": [
+          1499.0862405286437,
+          52.34924505375145
+        ],
+        "witness_error_deg": 2.0000000000000027,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -142.96831875650852,
+          -38.12139607610725
+        ],
+        "observation_interval_deg": [
+          -144.96831875650852,
+          -36.121396076107246
+        ]
+      },
+      "optimized_strategy": {
+        "station": [
+          776.9213185978905,
+          629.5976689192952
+        ],
+        "diameter_m": 301.6920779475579,
+        "status": "finite",
+        "max_distance_m": 999.9999800002474,
+        "min_distance_m": 602.0999720340394,
+        "reliable_detection": true,
+        "reliable_bearing": true,
+        "movement_distance_m": 999.9999800002474,
+        "angle_count": 257,
+        "refine": true,
+        "q1_verified": true,
+        "worst_observation_deg": 323.36359051440155,
+        "witness_target": [
+          1499.0862405286437,
+          52.34924505375145
+        ],
+        "witness_error_deg": 2.0000000000000027,
+        "interpretation_zh": "连续方向区间上的数值极大化，非严格全局最优证明。",
+        "true_direction_interval_deg": [
+          -140.97955355858062,
+          -38.63640948559844
+        ],
+        "observation_interval_deg": [
+          -142.97955355858062,
+          -36.63640948559844
+        ],
+        "local_station": [
+          776.9213185978905,
+          629.5976689192952
+        ],
+        "q1_result": {
+          "kind": "polygon",
+          "vertices": [
+            [
+              1499.0862405286443,
+              52.34924505375153
+            ],
+            [
+              1636.0527004398614,
+              -57.13221922841183
+            ],
+            [
+              1778.2280430660687,
+              -62.097091595671884
+            ],
+            [
+              1607.0939887070363,
+              56.120958731211886
+            ]
+          ],
+          "diameter": 301.6920779475581,
+          "diameter_pair": [
+            [
+              1499.0862405286443,
+              52.34924505375153
+            ],
+            [
+              1778.2280430660687,
+              -62.097091595671884
+            ]
+          ],
+          "circle_center": [
+            1638.6571417973566,
+            -4.8739232709601765
+          ],
+          "cover_radius": 150.84603897377906,
+          "max_center_distance": 150.84603897377906,
+          "coverage_excess": 0.0,
+          "covered": true,
+          "A": [
+            [
+              -0.03489949670250097,
+              -0.9993908270190958
+            ],
+            [
+              -0.03489949670250097,
+              0.9993908270190958
+            ],
+            [
+              -0.6243760999312823,
+              -0.7811238607510345
+            ],
+            [
+              0.568366705049494,
+              0.8227753573067083
+            ]
+          ],
+          "b": [
+            0.0,
+            0.0,
+            -976.8848647257115,
+            959.593656938735
+          ],
+          "normalization_origin": [
+            388.46065929894525,
+            314.7988344596476
+          ],
+          "normalization_scale": 499.9999900001237,
+          "tolerance": 1e-09,
+          "feasible_point": [
+            1607.0939887070363,
+            56.12095873121183
+          ],
+          "kind_zh": "有界凸多边形",
+          "absolute_tolerance": 4.999999900001237e-07
+        }
+      },
+      "configuration": {
+        "grid_step_m": 50,
+        "angle_count": 65,
+        "local_steps_m": [
+          10.0,
+          2.0,
+          0.4
+        ],
+        "final_angle_count": 257,
+        "eta": 0.05,
+        "reception_lower_m": 1000.0,
+        "safety_margin_m": 1e-05,
+        "near_radius_m": 5.0,
+        "use_slsqp": true,
+        "model_note_zh": "物理域与可靠约束连续求值；鲁棒角度和外层选点为网格及局部细化近似。"
+      }
+    }
+  ]
+}
