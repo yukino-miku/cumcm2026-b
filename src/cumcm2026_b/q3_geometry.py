@@ -141,8 +141,8 @@ def sweep_path(vertices, current, spacing=20.0):
 
 def finish_bound(vertices, current):
     """明确后续策略的费用：安全圆清除，或有限方格蛇形覆盖的最坏费用。"""
-    point = clear_point(vertices, current)
-    if point is not None:
+    point, radius = minimum_circle(vertices)
+    if radius <= 19.5:
         return float(np.linalg.norm(point-current)/5+5)
     path = sweep_path(vertices, current)
     length = np.linalg.norm(path[0]-current)+np.linalg.norm(np.diff(path, axis=0), axis=1).sum()
