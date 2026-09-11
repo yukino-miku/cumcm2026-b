@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/"src"))
 from cumcm2026_b.q3_protocol import RobotClient, HttpTransport
 from cumcm2026_b.q3_local_env import make_case
-from cumcm2026_b.q3_strategy import SchemeOne, StrategyConfig
+from cumcm2026_b.q3_routed_strategies import SchemeOneRouted as SchemeOne, RoutedOneConfig as StrategyConfig
 
 
 def main():
@@ -25,12 +25,14 @@ def main():
     p.add_argument("--radius", choices=["min", "max", "mixed"], default="min")
     p.add_argument("--error", choices=["hash", "zero", "plus", "minus", "alternating"], default="hash")
     p.add_argument("--no-opportunistic", action="store_true")
-    p.add_argument("--config", type=Path, default=ROOT/"configs/q3_scheme1.json")
+    p.add_argument("--no-route-planning", action="store_true", help="恢复原版每站处理全部已知目标的调度")
+    p.add_argument("--config", type=Path, default=ROOT/"configs/q3_scheme1_routed.json")
     p.add_argument("--output", type=Path)
     args = p.parse_args()
     if args.mode == "http" and not args.robot_id: p.error("连接官方接口须提供--robot-id或CUMCM_ROBOT_ID环境变量")
     parameters = json.loads(args.config.read_text(encoding="utf-8"))
     if args.no_opportunistic: parameters["opportunistic"] = False
+    if args.no_route_planning: parameters["route_planning"] = False
     config = StrategyConfig(**parameters)
     output = args.output or ROOT/"local-only/第三问"/(args.mode+"-"+uuid4().hex[:12])
     output.mkdir(parents=True, exist_ok=False)

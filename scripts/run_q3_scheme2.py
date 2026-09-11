@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/"src"))
 from cumcm2026_b.q3_protocol import RobotClient, HttpTransport
 from cumcm2026_b.q3_local_env import make_case
-from cumcm2026_b.q3_scheme2 import SchemeTwo, SchemeTwoConfig, LAYOUT_NAMES
+from cumcm2026_b.q3_scheme2 import LAYOUT_NAMES
+from cumcm2026_b.q3_routed_strategies import SchemeTwoRouted as SchemeTwo, RoutedTwoConfig as SchemeTwoConfig
 
 
 def main():
@@ -27,7 +28,9 @@ def main():
     parser.add_argument("--station-layout", choices=list(LAYOUT_NAMES))
     parser.add_argument("--no-scan-clear", action="store_true", help="关闭可选的扫描站原地清除，near仍立即处理")
     parser.add_argument("--no-opportunistic", action="store_true", help="关闭精定位阶段顺路检测")
-    parser.add_argument("--config", type=Path, default=ROOT/"configs/q3_scheme2.json")
+    parser.add_argument("--no-skip-localized", action="store_true", help="恢复原版：已定位但未清除频道继续固定扫描")
+    parser.add_argument("--no-route-planning", action="store_true", help="关闭站间顺路处理及路线规划")
+    parser.add_argument("--config", type=Path, default=ROOT/"configs/q3_scheme2_routed.json")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if args.mode == "http" and not args.robot_id: parser.error("HTTP模式须提供--robot-id或CUMCM_ROBOT_ID")
@@ -35,6 +38,8 @@ def main():
     if args.station_layout: parameters["layout"] = args.station_layout
     if args.no_scan_clear: parameters["scan_clear"] = False
     if args.no_opportunistic: parameters["opportunistic"] = False
+    if args.no_skip_localized: parameters["skip_localized"] = False
+    if args.no_route_planning: parameters["route_planning"] = False
     config = SchemeTwoConfig(**parameters)
     output = args.output or ROOT/"local-only/第三问"/("scheme2-"+args.mode+"-"+uuid4().hex[:12])
     output.mkdir(parents=True, exist_ok=False)

@@ -1,0 +1,13 @@
+{
+  "angle_samples": 9,
+  "candidate_limit": 24,
+  "planning_seconds": 0.8,
+  "max_localization_measurements": 8,
+  "max_actions": 10000,
+  "opportunistic": true,
+  "opportunistic_limit": 4,
+  "runtime_limit": 1200.0,
+  "layout": "main14",
+  "scan_clear": true,
+  "skip_localized": true
+}
