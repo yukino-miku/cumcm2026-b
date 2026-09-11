@@ -107,3 +107,25 @@ def test_incomplete_scan_receipt_certificate_is_detected():
     state.region.observe([0,0],"direction",45)
     with pytest.raises(RuntimeError, match="不足两个"):
         solver._finish_scan()
+
+
+def test_optional_station_clear_handles_non_near_target_and_can_be_disabled():
+    station = np.array(layout_spec()["站点"][3])
+    target = tuple(station+[6.,1.])
+    for enabled in (True,False):
+        env = LocalEnvironment([Source(1,target,1500)],error_mode="zero")
+        result = SchemeTwo(RobotClient(env,"local-robot"),SchemeTwoConfig(scan_clear=enabled)).run()
+        assert result["运行成功"]
+        clears = [e for e in result["动作记录"] if e.get("用途") == "固定扫描站原地证书清除"]
+        assert bool(clears) == enabled
+        if enabled:
+            assert clears[0]["位置"] == station.tolist()
+            assert math.dist(target,station) > 5
+
+
+def test_finite_sweep_after_fixed_scan_completes_without_extra_measurement_planning():
+    env = LocalEnvironment([Source(1,(-149.,0.))],error_mode="zero")
+    result = SchemeTwo(RobotClient(env,"local-robot"),SchemeTwoConfig(max_localization_measurements=0)).run()
+    assert result["运行成功"] and env.truth_for_evaluation()["全部清除"]
+    assert any(e["动作"] == "有限覆盖" for e in result["动作记录"])
+    assert sum(c["追加测向次数"] for c in result["频道记录"]) == 0
