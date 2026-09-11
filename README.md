@@ -12,7 +12,9 @@
 
 ## 目录
 
-**第三问入口：[阅读导航](docs/第三问/阅读导航.md)**。方案一包含七站搜索、自适应定位清除、HTTP客户端、30场景双设置对照及3组中文图；尚无官方演练或正式成绩。本地运行：`.venv/Scripts/python.exe -X utf8 scripts/run_q3_scheme1.py`；完整复现：`pwsh -NoProfile -File scripts/run-q3.ps1`。
+**第三问入口：[阅读导航](docs/第三问/阅读导航.md)**。方案一包含七站搜索、自适应定位清除、HTTP客户端、30场景双设置构造对照及3组中文图。本地运行：`.venv/Scripts/python.exe -X utf8 scripts/run_q3_scheme1.py`；完整复现：`pwsh -NoProfile -File scripts/run-q3.ps1`。
+
+最新[方案二演练日志分析](docs/第三问/演练日志分析_BRZA-YW2D-CW4A-YJSC.md)已关联官方演练文件头与本地实际HTTP记录，报告13次成功清除及完整费用核验；加密正文和官方目标总数未独立读取，正式测试成绩仍为空。
 
 方案二包含固定双覆盖扫描、后续精定位清除、三布局及原地清除对照、4组新增中文图。两方案共150次同场景运行均全清，全库135项测试通过。方案二本地运行：`.venv/Scripts/python.exe -X utf8 scripts/run_q3_scheme2.py`；完整复现：`pwsh -NoProfile -File scripts/run-q3-scheme2.ps1`。比较结论见[两方案验证报告](docs/第三问/方案二_验证与两方案对照.md)。
 
