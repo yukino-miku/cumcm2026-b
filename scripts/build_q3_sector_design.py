@@ -11,6 +11,7 @@ from matplotlib import font_manager
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Wedge
 import numpy as np
+from scipy.integrate import quad
 
 ROOT = Path(__file__).resolve().parents[1]
 FIG = ROOT / 'results/figures/第三问/扇形清空_边界与补充扫描'
@@ -37,6 +38,16 @@ def calculate():
     squared = rho*rho+1200**2-2*rho*1200*np.cos(theta-math.pi/6)
     sampled = float(np.minimum(rho, np.sqrt(np.maximum(squared, 0))).max())
     assert abs(sampled-bound) < 1e-8  # 数值复核，连续覆盖的依据是上面的解析边界。
+    start = math.acos((1800**2+1200**2-1000**2)/(2*1800*1200))
+    finish = math.acos(1200/(2*1000))
+
+    def blind_radial_area(theta):
+        discriminant = 1000**2-1200**2*math.sin(theta)**2
+        far = 1200*math.cos(theta)+math.sqrt(max(discriminant, 0)) if discriminant >= 0 else 0
+        return .5*(1800**2-min(1800, max(1000, far))**2)
+
+    blind_area, integration_error = quad(blind_radial_area, 0, math.pi/3,
+        points=[start, finish, math.asin(1000/1200)], epsabs=1e-6)
     return {
         '性质': '待实施扇形方案的解析几何构造；不是算法运行或实测收益',
         '扇形角度_度': [0, 60], '扇形半径_米': 1800,
@@ -47,6 +58,13 @@ def calculate():
         '盲区反例': {'位置': example.tolist(), '到中心_米': 1800.,
                    '到当前站_米': float(np.linalg.norm(example-current)),
                    '到补充站_米': float(np.linalg.norm(example-middle))},
+        '仅中心和当前站的第一扇形盲区': {
+            '条件': '每个站对该频道的接收半径按1000米；尚无途中站观测，非实测残余盲区',
+            '面积_平方米': blind_area, '占完整扇形面积比例': blind_area/(.5*1800**2*math.pi/3),
+            '数值积分误差估计_平方米': integration_error,
+            '外圆开始漏检角度_度': math.degrees(start),
+            '距圆心300米站到1800米外圆的最近距离_米': 1800-300,
+        },
     }
 
 
