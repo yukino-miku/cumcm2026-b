@@ -1,0 +1,18 @@
+{
+  "angle_samples": 9,
+  "candidate_limit": 24,
+  "planning_seconds": 0.8,
+  "max_localization_measurements": 8,
+  "max_actions": 10000,
+  "opportunistic": true,
+  "opportunistic_limit": 4,
+  "runtime_limit": 1200.0,
+  "coverage_radius_m": 999.5,
+  "coverage_cell_m": 25.0,
+  "coverage_max_nodes": 4096,
+  "reuse_min_distance_m": 40.0,
+  "reuse_min_gain": 0.5,
+  "nearby_clear_detour_m": 80.0,
+  "route_action_limit": 24,
+  "localization_detour_limit_m": 400.0
+}
