@@ -1,0 +1,17 @@
+{
+  "说明": "图表可从完整脱敏构造记录重绘",
+  "输入SHA256": {
+    "results/tables/第三问/扇形版_成对验证汇总.json": "bf10b374eb1f4100ed8a0ab4bf30cccbc38c520d3a3c99f180a0743a7b1861d4",
+    "experiments/第三问/扇形清空/完整成对记录.jsonl": "02a1899103456ec7d927b396ac8faef4099a8e8621a0be5c479ec8577e3814ec"
+  },
+  "图表SHA256": {
+    "results/figures/第三问/扇形版_费用与逐场差值.png": "f7a68fca42e74cd3f57f8ed880332a9480d60317544d353c6eedd351d02b45b4",
+    "results/figures/第三问/扇形版_费用与逐场差值.svg": "fb757061e0581745a882ce3addad764affe3f04d235fc97f13b334a4e6488513",
+    "results/figures/第三问/扇形版_均匀与边界轨迹.png": "22f194042a43c9580cc13d279d8998fe6d79eec3484af6ee4a67907288944b6f",
+    "results/figures/第三问/扇形版_均匀与边界轨迹.svg": "9e15be53284649265769a73d7e17f11dc71319477ac80884a347e02e8092c213",
+    "results/figures/第三问/扇形版_中心与聚集轨迹.png": "4e7a4fa03afacaf05f9f0f26625f3283d6255b95521b6816cce62f448e07b9ce",
+    "results/figures/第三问/扇形版_中心与聚集轨迹.svg": "65fb65d751f49da88692779aa2c3524d12de1ba56c1ca694d1dc35e73ae0d58e",
+    "results/figures/第三问/扇形版_执行流程.png": "124c8f352a81a0656f0bc33d45f21a2f4a1f9bb915d737a13ab79323d63045a5",
+    "results/figures/第三问/扇形版_执行流程.svg": "7b07091e4c8a9feba5d7bf70fb3e316c59cdc14ac4bb7388803fee34e6ba254e"
+  }
+}
