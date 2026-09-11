@@ -1,0 +1,1113 @@
+{
+  "说明": "仅评估用户指定s1/s2两组；官方结果JSON用于核验总目标数，行为费用来自时间吻合的本地HTTP日志；未解密jlog/psum或验证签名",
+  "统计": {
+    "s1": {
+      "演练数": 6,
+      "全清次数": 6,
+      "平均官方结果文件目标总数": 13.0,
+      "平均总虚拟时间_秒": 4595.698024666667,
+      "平均每目标虚拟时间_秒": 364.98878216416847,
+      "平均总路程_米": 18727.656786272248,
+      "平均检测次数": 131.83333333333334,
+      "平均切换次数": 125.0,
+      "平均专门追加测向次数": 16.666666666666668,
+      "平均本地程序时间_秒": 1.518166666670974,
+      "清除目标总数": 78,
+      "失败清除总次数": 2,
+      "重试总次数": 0,
+      "通信异常总次数": 0,
+      "最大总虚拟时间_秒": 4970.921062,
+      "每目标时间中位数_秒": 356.22379471428576,
+      "每目标时间样本标准差_秒": 78.4221414071401,
+      "合计时间除以合计目标_秒": 353.5152326666667,
+      "平均时间分项_秒": {
+        "移动": 3745.5313572544496,
+        "检测": 659.1666666666666,
+        "切换": 125.0,
+        "清除成功": 65.0,
+        "清除失败": 1.0
+      }
+    },
+    "s2": {
+      "演练数": 6,
+      "全清次数": 6,
+      "平均官方结果文件目标总数": 12.0,
+      "平均总虚拟时间_秒": 4914.840271,
+      "平均每目标虚拟时间_秒": 414.4290957273809,
+      "平均总路程_米": 16154.201339706453,
+      "平均检测次数": 273.0,
+      "平均切换次数": 259.0,
+      "平均专门追加测向次数": 1.0,
+      "平均本地程序时间_秒": 1.299500000003415,
+      "清除目标总数": 72,
+      "失败清除总次数": 0,
+      "重试总次数": 0,
+      "通信异常总次数": 0,
+      "最大总虚拟时间_秒": 5306.260146,
+      "每目标时间中位数_秒": 403.53474837500005,
+      "每目标时间样本标准差_秒": 43.983870332074865,
+      "合计时间除以合计目标_秒": 409.5700225833333,
+      "平均时间分项_秒": {
+        "移动": 3230.84026794129,
+        "检测": 1365.0,
+        "切换": 259.0,
+        "清除成功": 60.0,
+        "清除失败": 0.0
+      }
+    }
+  },
+  "比较口径": {
+    "相同案例码数": 0,
+    "平均总时间减少百分比": 6.493440859440147,
+    "每局每目标时间均值减少百分比": 11.929739990006683,
+    "共同目标数分层": [
+      {
+        "目标数": 10,
+        "s1": {
+          "样本数": 1,
+          "平均每目标时间_秒": 460.4192027
+        },
+        "s2": {
+          "样本数": 2,
+          "平均每目标时间_秒": 463.6079277
+        },
+        "方案一相对方案二减少百分比": 0.6878064005116369
+      },
+      {
+        "目标数": 12,
+        "s1": {
+          "样本数": 1,
+          "平均每目标时间_秒": 361.513997
+        },
+        "s2": {
+          "样本数": 2,
+          "平均每目标时间_秒": 403.53474837500005
+        },
+        "方案一相对方案二减少百分比": 10.413168021890062
+      },
+      {
+        "目标数": 14,
+        "s1": {
+          "样本数": 1,
+          "平均每目标时间_秒": 350.93359242857144
+        },
+        "s2": {
+          "样本数": 2,
+          "平均每目标时间_秒": 376.14461110714285
+        },
+        "方案一相对方案二减少百分比": 6.702480358382745
+      }
+    ],
+    "共同层等权每目标均值_秒": {
+      "s1": 390.9555973761905,
+      "s2": 414.4290957273809
+    },
+    "共同层等权减少百分比": 5.664056552301466,
+    "非配对均值差S1减S2_秒": -49.44031356321244,
+    "探索性Welch95区间_秒": [
+      -134.3463453297428,
+      35.465718203317905
+    ],
+    "区间假设与限制": "独立样本的近似Welch均值差区间；每组仅6局、未确认随机分配、目标数分布不同，不是算法因果效应区间"
+  },
+  "逐局记录": [
+    {
+      "组": "s1",
+      "方案": "方案一",
+      "案例码": "3ZZU-E2GU-MGNT-8VNW",
+      "演练编号": "251294462145476555",
+      "结束时间UTC": "2026-09-11T10:13:38.405Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 15,
+      "成功清除数": 15,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4421.804656,
+      "每目标虚拟时间_秒": 294.7869770666667,
+      "总路程_米": 18084.02328373598,
+      "检测次数": 123,
+      "切换次数": 115,
+      "专门追加测向次数": 16,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.4060000000026776,
+      "时间分项_秒": {
+        "移动": 3616.804656747196,
+        "检测": 615,
+        "切换": 115,
+        "清除成功": 75,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0
+      },
+      "请求响应核验": {
+        "不同动作数": 140,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 123,
+          "/clear": 15,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 85,
+          "direction": 38
+        },
+        "HTTP状态": {
+          "200": 140
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 1.0,
+      "关联本地目录": "local-only/第三问/http-c7314238ddb1",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-251294462145476555-3ZZU-E2GU-MGNT-8VNW.result.json",
+      "jlog_SHA256": "6a0b04b733f7a352d5b36a36a46172dc7d7250b3e1abcc5221c766b1011c0481",
+      "扫描阶段": {},
+      "显示编号": "S1-1"
+    },
+    {
+      "组": "s1",
+      "方案": "方案一",
+      "案例码": "N4DC-GJKT-ACSH-36E3",
+      "演练编号": "2517869976796750869",
+      "结束时间UTC": "2026-09-11T10:13:54.828Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 14,
+      "成功清除数": 14,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4913.070294,
+      "每目标虚拟时间_秒": 350.93359242857144,
+      "总路程_米": 20335.351462564227,
+      "检测次数": 130,
+      "切换次数": 123,
+      "专门追加测向次数": 16,
+      "失败清除次数": 1,
+      "失败清除用途": [
+        "有限方格覆盖"
+      ],
+      "本地程序时间_秒": 1.5,
+      "时间分项_秒": {
+        "移动": 4067.0702925128453,
+        "检测": 650,
+        "切换": 123,
+        "清除成功": 70,
+        "清除失败": 3
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0
+      },
+      "请求响应核验": {
+        "不同动作数": 147,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 130,
+          "/clear": 15,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "direction": 34,
+          "no_signal": 96
+        },
+        "HTTP状态": {
+          "200": 147
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/http-6ce34f46bf7d",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2517869976796750869-N4DC-GJKT-ACSH-36E3.result.json",
+      "jlog_SHA256": "521dfb2e2445e72bab0ce81a7e4b475a7e95b49df372e03caa25262adb0727c2",
+      "扫描阶段": {},
+      "显示编号": "S1-2"
+    },
+    {
+      "组": "s1",
+      "方案": "方案一",
+      "案例码": "RMNS-APTK-D5UV-M9AC",
+      "演练编号": "2316208933137380390",
+      "结束时间UTC": "2026-09-11T10:14:08.02Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 12,
+      "成功清除数": 12,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4338.167964,
+      "每目标虚拟时间_秒": 361.513997,
+      "总路程_米": 17710.839821401583,
+      "检测次数": 124,
+      "切换次数": 116,
+      "专门追加测向次数": 12,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.3590000000112923,
+      "时间分项_秒": {
+        "移动": 3542.1679642803165,
+        "检测": 620,
+        "切换": 116,
+        "清除成功": 60,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0
+      },
+      "请求响应核验": {
+        "不同动作数": 138,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 124,
+          "/clear": 12,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "direction": 27,
+          "no_signal": 97
+        },
+        "HTTP状态": {
+          "200": 138
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/http-bcb822093a4e",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2316208933137380390-RMNS-APTK-D5UV-M9AC.result.json",
+      "jlog_SHA256": "cf44f756cd92b5b65872c8fc17a0feba49bb72eb156fc27344487808f1d5815f",
+      "扫描阶段": {},
+      "显示编号": "S1-3"
+    },
+    {
+      "组": "s1",
+      "方案": "方案一",
+      "案例码": "8JYD-AQKN-NQ8Y-K8RQ",
+      "演练编号": "6214526734210945387",
+      "结束时间UTC": "2026-09-11T10:14:23.312Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 11,
+      "成功清除数": 11,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4970.921062,
+      "每目标虚拟时间_秒": 451.90191472727275,
+      "总路程_米": 20174.605308903832,
+      "检测次数": 148,
+      "切换次数": 141,
+      "专门追加测向次数": 17,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.4530000000086147,
+      "时间分项_秒": {
+        "移动": 4034.9210617807666,
+        "检测": 740,
+        "切换": 141,
+        "清除成功": 55,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0
+      },
+      "请求响应核验": {
+        "不同动作数": 161,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 148,
+          "/clear": 11,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 118,
+          "direction": 30
+        },
+        "HTTP状态": {
+          "200": 161
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/http-3671b5280d22",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-6214526734210945387-8JYD-AQKN-NQ8Y-K8RQ.result.json",
+      "jlog_SHA256": "f8d945a1c11a4002df861709d0898cf926e9a0e28787fd59f4bb959ea2f72409",
+      "扫描阶段": {},
+      "显示编号": "S1-4"
+    },
+    {
+      "组": "s1",
+      "方案": "方案一",
+      "案例码": "GZNA-9DK4-K9SM-ZJQ7",
+      "演练编号": "7339221079645645516",
+      "结束时间UTC": "2026-09-11T10:14:38.421Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 10,
+      "成功清除数": 10,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4604.192027,
+      "每目标虚拟时间_秒": 460.4192027,
+      "总路程_米": 18230.96012475394,
+      "检测次数": 152,
+      "切换次数": 145,
+      "专门追加测向次数": 16,
+      "失败清除次数": 1,
+      "失败清除用途": [
+        "有限方格覆盖"
+      ],
+      "本地程序时间_秒": 1.5,
+      "时间分项_秒": {
+        "移动": 3646.192024950788,
+        "检测": 760,
+        "切换": 145,
+        "清除成功": 50,
+        "清除失败": 3
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0
+      },
+      "请求响应核验": {
+        "不同动作数": 165,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 152,
+          "/clear": 11,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 125,
+          "direction": 27
+        },
+        "HTTP状态": {
+          "200": 165
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/http-e9ca91e1c910",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7339221079645645516-GZNA-9DK4-K9SM-ZJQ7.result.json",
+      "jlog_SHA256": "68c129059dfdb3d52deaf9bd4d484b8b5bf30d498054e06e6d7ce3fe1a16b549",
+      "扫描阶段": {},
+      "显示编号": "S1-5"
+    },
+    {
+      "组": "s1",
+      "方案": "方案一",
+      "案例码": "XU63-YVNP-MJ2B-RTQB",
+      "演练编号": "7571105252874345188",
+      "结束时间UTC": "2026-09-11T10:15:07.856Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 16,
+      "成功清除数": 16,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4326.032145,
+      "每目标虚拟时间_秒": 270.3770090625,
+      "总路程_米": 17830.160716273924,
+      "检测次数": 114,
+      "切换次数": 110,
+      "专门追加测向次数": 23,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.8910000000032596,
+      "时间分项_秒": {
+        "移动": 3566.032143254785,
+        "检测": 570,
+        "切换": 110,
+        "清除成功": 80,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0
+      },
+      "请求响应核验": {
+        "不同动作数": 132,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 114,
+          "/clear": 16,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 72,
+          "direction": 42
+        },
+        "HTTP状态": {
+          "200": 132
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/http-6eff3c18dfe6",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7571105252874345188-XU63-YVNP-MJ2B-RTQB.result.json",
+      "jlog_SHA256": "9e3cb4803c6c9a83bcbb19f1048df93af84ae73634dca16ce2d99e5c9113c7d5",
+      "扫描阶段": {},
+      "显示编号": "S1-6"
+    },
+    {
+      "组": "s2",
+      "方案": "方案二",
+      "案例码": "4HXX-WDAY-UJR9-B7JV",
+      "演练编号": "8293131636483620287",
+      "结束时间UTC": "2026-09-11T10:16:00.899Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 10,
+      "成功清除数": 10,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4816.653707,
+      "每目标虚拟时间_秒": 481.66537070000004,
+      "总路程_米": 15773.268522946077,
+      "检测次数": 271,
+      "切换次数": 257,
+      "专门追加测向次数": 1,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.0940000000118744,
+      "时间分项_秒": {
+        "移动": 3154.6537045892155,
+        "检测": 1355,
+        "切换": 257,
+        "清除成功": 50,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0,
+        "layout": "main14",
+        "scan_clear": true
+      },
+      "请求响应核验": {
+        "不同动作数": 283,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 271,
+          "/clear": 10,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 229,
+          "direction": 42
+        },
+        "HTTP状态": {
+          "200": 283
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 1.0,
+      "关联本地目录": "local-only/第三问/scheme2-http-e11a62ade800",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-8293131636483620287-4HXX-WDAY-UJR9-B7JV.result.json",
+      "jlog_SHA256": "03ffba36f64eeb047b666294c863f59fc8f6891bac87c64664a89f7772128693",
+      "扫描阶段": {
+        "实际虚拟时间_秒": 3145.624371,
+        "实际路程_米": 7698.1218410937745,
+        "检测次数": 270,
+        "切换次数": 256,
+        "清除数": 0,
+        "已完成固定站": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "待清除数": 10,
+        "需继续缩小外包数": 2
+      },
+      "显示编号": "S2-1"
+    },
+    {
+      "组": "s2",
+      "方案": "方案二",
+      "案例码": "VPPX-944E-PF3G-YHT4",
+      "演练编号": "4194591981019921505",
+      "结束时间UTC": "2026-09-11T10:16:16.898Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 14,
+      "成功清除数": 14,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 5225.788965,
+      "每目标虚拟时间_秒": 373.27064035714284,
+      "总路程_米": 17598.944806091735,
+      "检测次数": 275,
+      "切换次数": 261,
+      "专门追加测向次数": 1,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.4690000000118744,
+      "时间分项_秒": {
+        "移动": 3519.788961218347,
+        "检测": 1375,
+        "切换": 261,
+        "清除成功": 70,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0,
+        "layout": "main14",
+        "scan_clear": true
+      },
+      "请求响应核验": {
+        "不同动作数": 291,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 275,
+          "/clear": 14,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 189,
+          "direction": 86
+        },
+        "HTTP状态": {
+          "200": 291
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 1.0,
+      "关联本地目录": "local-only/第三问/scheme2-http-18e0c32d9961",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-4194591981019921505-VPPX-944E-PF3G-YHT4.result.json",
+      "jlog_SHA256": "0de9d63d96ca05dd3714dad28c8f73a1c2a2aaa8868ce16e88fb15418d421bbb",
+      "扫描阶段": {
+        "实际虚拟时间_秒": 3169.624371,
+        "实际路程_米": 7698.1218410937745,
+        "检测次数": 274,
+        "切换次数": 260,
+        "清除数": 0,
+        "已完成固定站": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "待清除数": 14,
+        "需继续缩小外包数": 2
+      },
+      "显示编号": "S2-2"
+    },
+    {
+      "组": "s2",
+      "方案": "方案二",
+      "案例码": "WWEW-QGFP-ZABZ-47X8",
+      "演练编号": "5215787244460935895",
+      "结束时间UTC": "2026-09-11T10:16:29.648Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 12,
+      "成功清除数": 12,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 5110.523699,
+      "每目标虚拟时间_秒": 425.8769749166667,
+      "总路程_米": 17132.618480456564,
+      "检测次数": 273,
+      "切换次数": 259,
+      "专门追加测向次数": 1,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.3280000000086147,
+      "时间分项_秒": {
+        "移动": 3426.5236960913126,
+        "检测": 1365,
+        "切换": 259,
+        "清除成功": 60,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0,
+        "layout": "main14",
+        "scan_clear": true
+      },
+      "请求响应核验": {
+        "不同动作数": 287,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 273,
+          "/clear": 12,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 211,
+          "direction": 62
+        },
+        "HTTP状态": {
+          "200": 287
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/scheme2-http-0bd6a789bc0e",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-5215787244460935895-WWEW-QGFP-ZABZ-47X8.result.json",
+      "jlog_SHA256": "a294ee0e40f29f086dbdc33fe32ef4811358dfcb0a4f09adb1faf62e6595ec72",
+      "扫描阶段": {
+        "实际虚拟时间_秒": 3157.624371,
+        "实际路程_米": 7698.1218410937745,
+        "检测次数": 272,
+        "切换次数": 258,
+        "清除数": 0,
+        "已完成固定站": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "待清除数": 12,
+        "需继续缩小外包数": 1
+      },
+      "显示编号": "S2-3"
+    },
+    {
+      "组": "s2",
+      "方案": "方案二",
+      "案例码": "FVXF-BZD6-AT2W-PGEB",
+      "演练编号": "7215385160609560253",
+      "结束时间UTC": "2026-09-11T10:16:40.539Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 10,
+      "成功清除数": 10,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4455.504847,
+      "每目标虚拟时间_秒": 445.5504847,
+      "总路程_米": 13972.524223023329,
+      "检测次数": 271,
+      "切换次数": 256,
+      "专门追加测向次数": 1,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.1719999999913853,
+      "时间分项_秒": {
+        "移动": 2794.504844604666,
+        "检测": 1355,
+        "切换": 256,
+        "清除成功": 50,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0,
+        "layout": "main14",
+        "scan_clear": true
+      },
+      "请求响应核验": {
+        "不同动作数": 283,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 271,
+          "/clear": 10,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 199,
+          "direction": 72
+        },
+        "HTTP状态": {
+          "200": 283
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/scheme2-http-f021da5183c4",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-7215385160609560253-FVXF-BZD6-AT2W-PGEB.result.json",
+      "jlog_SHA256": "2ba3b59af0dfd0f59a854c140502fe0ef25757f42a741a87bd31eb487e877c2b",
+      "扫描阶段": {
+        "实际虚拟时间_秒": 3145.624371,
+        "实际路程_米": 7698.1218410937745,
+        "检测次数": 270,
+        "切换次数": 256,
+        "清除数": 0,
+        "已完成固定站": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "待清除数": 10,
+        "需继续缩小外包数": 1
+      },
+      "显示编号": "S2-4"
+    },
+    {
+      "组": "s2",
+      "方案": "方案二",
+      "案例码": "F5UA-35TK-RTYM-XF35",
+      "演练编号": "333428654345467113",
+      "结束时间UTC": "2026-09-11T10:16:53.104Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 14,
+      "成功清除数": 14,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 5306.260146,
+      "每目标虚拟时间_秒": 379.0185818571428,
+      "总路程_米": 17971.300707724673,
+      "检测次数": 276,
+      "切换次数": 262,
+      "专门追加测向次数": 2,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.25,
+      "时间分项_秒": {
+        "移动": 3594.2601415449344,
+        "检测": 1380,
+        "切换": 262,
+        "清除成功": 70,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0,
+        "layout": "main14",
+        "scan_clear": true
+      },
+      "请求响应核验": {
+        "不同动作数": 292,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 276,
+          "/clear": 14,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "no_signal": 195,
+          "direction": 81
+        },
+        "HTTP状态": {
+          "200": 292
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/scheme2-http-bb5a53347c76",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-333428654345467113-F5UA-35TK-RTYM-XF35.result.json",
+      "jlog_SHA256": "fb233fb25ef7ed1588e912fefe266403cdb4015df9a4d5b83b6a72cef3164c26",
+      "扫描阶段": {
+        "实际虚拟时间_秒": 3169.624371,
+        "实际路程_米": 7698.1218410937745,
+        "检测次数": 274,
+        "切换次数": 260,
+        "清除数": 0,
+        "已完成固定站": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "待清除数": 14,
+        "需继续缩小外包数": 2
+      },
+      "显示编号": "S2-5"
+    },
+    {
+      "组": "s2",
+      "方案": "方案二",
+      "案例码": "9QDY-39K6-EAX8-XKNR",
+      "演练编号": "549385803263705191",
+      "结束时间UTC": "2026-09-11T10:17:07.225Z",
+      "客户端版本": "1.1.0",
+      "官方结果文件目标总数": 12,
+      "成功清除数": 12,
+      "全清核对通过": true,
+      "本地判定成功": true,
+      "异常": null,
+      "总虚拟时间_秒": 4574.310262,
+      "每目标虚拟时间_秒": 381.19252183333333,
+      "总路程_米": 14476.551297996335,
+      "检测次数": 272,
+      "切换次数": 259,
+      "专门追加测向次数": 0,
+      "失败清除次数": 0,
+      "失败清除用途": [],
+      "本地程序时间_秒": 1.4839999999967404,
+      "时间分项_秒": {
+        "移动": 2895.310259599267,
+        "检测": 1360,
+        "切换": 259,
+        "清除成功": 60,
+        "清除失败": 0
+      },
+      "配置": {
+        "angle_samples": 9,
+        "candidate_limit": 24,
+        "planning_seconds": 0.8,
+        "max_localization_measurements": 8,
+        "max_actions": 10000,
+        "opportunistic": true,
+        "opportunistic_limit": 4,
+        "runtime_limit": 1200.0,
+        "layout": "main14",
+        "scan_clear": true
+      },
+      "请求响应核验": {
+        "不同动作数": 286,
+        "接口次数": {
+          "/enter": 1,
+          "/measure": 272,
+          "/clear": 12,
+          "/exit": 1
+        },
+        "测量反馈": {
+          "direction": 63,
+          "no_signal": 209
+        },
+        "HTTP状态": {
+          "200": 286
+        },
+        "重试请求数": 0,
+        "通信异常数": 0,
+        "逐动作费用核验": "通过"
+      },
+      "关联时间差_毫秒": 2.0,
+      "关联本地目录": "local-only/第三问/scheme2-http-1f9fec6135cf",
+      "官方结果文件": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-549385803263705191-9QDY-39K6-EAX8-XKNR.result.json",
+      "jlog_SHA256": "af63de315c0815d6a0e1811093bcef1eb638be52cc1d31e5d1ceda0b9055c300",
+      "扫描阶段": {
+        "实际虚拟时间_秒": 3158.624371,
+        "实际路程_米": 7698.1218410937745,
+        "检测次数": 272,
+        "切换次数": 259,
+        "清除数": 0,
+        "已完成固定站": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "待清除数": 12,
+        "需继续缩小外包数": 0
+      },
+      "显示编号": "S2-6"
+    }
+  ],
+  "来源SHA256": {
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2316208933137380390-RMNS-APTK-D5UV-M9AC.result.json": "8a5411c9cbf96e34b4c6ff6ca5aaf24065c9c5a5bccd835734a69a81b08f7224",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2316208933137380390-RMNS-APTK-D5UV-M9AC.jlog": "cf44f756cd92b5b65872c8fc17a0feba49bb72eb156fc27344487808f1d5815f",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2316208933137380390-RMNS-APTK-D5UV-M9AC.psum": "e69e616db89121197e6a29f263ecc83c5ddf8f211b3d0338862c33dbddb7bc65",
+    "local-only/第三问/http-bcb822093a4e/运行结果.json": "adf0349f30db07d8335f9afefd9ea24b604a2ce4ff4fa1f1e6c33d2629ab0278",
+    "local-only/第三问/http-bcb822093a4e/请求响应日志.jsonl": "88a9ec92dfa1f25b90d1208fe54b20dda92bc91ca99a31ca36c7575ef0f8998f",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-251294462145476555-3ZZU-E2GU-MGNT-8VNW.result.json": "a50b118a6bd4a65de4527954a2d77fbbcf049038ca431c35cc69d67873fb985d",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-251294462145476555-3ZZU-E2GU-MGNT-8VNW.jlog": "6a0b04b733f7a352d5b36a36a46172dc7d7250b3e1abcc5221c766b1011c0481",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-251294462145476555-3ZZU-E2GU-MGNT-8VNW.psum": "9172602f0586e4c58286817fa07439aef40f6e5065ad37ba1b09c8fff278c835",
+    "local-only/第三问/http-c7314238ddb1/运行结果.json": "0a4b35e598ff1c8e48c49503258aef48b87c76d7b1e6e797671972f2542db777",
+    "local-only/第三问/http-c7314238ddb1/请求响应日志.jsonl": "e4f373c5c9846de100cc45bae2478e82ce4f79f553b1a2d99301ecd8685bd382",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2517869976796750869-N4DC-GJKT-ACSH-36E3.result.json": "f3f4a191d24c2f45cf82d7b99414182d2f70ed9c91820f33f701cdafda4774bc",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2517869976796750869-N4DC-GJKT-ACSH-36E3.jlog": "521dfb2e2445e72bab0ce81a7e4b475a7e95b49df372e03caa25262adb0727c2",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-2517869976796750869-N4DC-GJKT-ACSH-36E3.psum": "09f6a8abf351d5b01392dde465b40802032f19e1e768aefd2412b5305ee7deea",
+    "local-only/第三问/http-6ce34f46bf7d/运行结果.json": "453764443fc9994b8fd31f758315b8808a75758e635c48a78fd2c35446319ef2",
+    "local-only/第三问/http-6ce34f46bf7d/请求响应日志.jsonl": "c5c3684d95b13be2d7628a53ff67d520f7e8c9100860f825aa0b7fdf5b3adda8",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-6214526734210945387-8JYD-AQKN-NQ8Y-K8RQ.result.json": "076ef6b0d7007502571fc44d04665c0e4ad2467ed8b8f02c5b0313a32e87cd27",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-6214526734210945387-8JYD-AQKN-NQ8Y-K8RQ.jlog": "f8d945a1c11a4002df861709d0898cf926e9a0e28787fd59f4bb959ea2f72409",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-6214526734210945387-8JYD-AQKN-NQ8Y-K8RQ.psum": "5cf560ea4406753ef4fd21435c99b1199e40298e8d93f3cfe88e895ff889814e",
+    "local-only/第三问/http-3671b5280d22/运行结果.json": "d99833c9c8c51ad5140d91c57095c800926170253bbc8b23209da910580e561e",
+    "local-only/第三问/http-3671b5280d22/请求响应日志.jsonl": "be50fa64c7b7e779d923221a1474bfde2f35adc32f0bcad736d80b8387c98f14",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7339221079645645516-GZNA-9DK4-K9SM-ZJQ7.result.json": "808a7d06d701c198ad7c4a1da3657e3aba4a92a38d3639191e85c4c5a0d725cc",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7339221079645645516-GZNA-9DK4-K9SM-ZJQ7.jlog": "68c129059dfdb3d52deaf9bd4d484b8b5bf30d498054e06e6d7ce3fe1a16b549",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7339221079645645516-GZNA-9DK4-K9SM-ZJQ7.psum": "ac2547a20ea685a6ba063fa578fef97ace931653800f41c15a7e98f8d4fe321e",
+    "local-only/第三问/http-e9ca91e1c910/运行结果.json": "01fa0bbfa520014465638a45f6730abda6539cf2d065058220a2eae6cdde6fed",
+    "local-only/第三问/http-e9ca91e1c910/请求响应日志.jsonl": "69c7cbc9e523ca9a5c786d928ba018e94e308f72ab21822854a8976b71d8c64c",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7571105252874345188-XU63-YVNP-MJ2B-RTQB.result.json": "2e3878283a0d39d89524e79b4db28f0a355679bf6150bf1979ba52977b17279c",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7571105252874345188-XU63-YVNP-MJ2B-RTQB.jlog": "9e3cb4803c6c9a83bcbb19f1048df93af84ae73634dca16ce2d99e5c9113c7d5",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s1/practice-p3-7571105252874345188-XU63-YVNP-MJ2B-RTQB.psum": "4f212d1f224adb7dca562d8c369896cac9967b413271817ad911fcfd0d8a902a",
+    "local-only/第三问/http-6eff3c18dfe6/运行结果.json": "8f2c32e207155feea02f83721b03f50884149931bcb4aacc93e6b697e50ce945",
+    "local-only/第三问/http-6eff3c18dfe6/请求响应日志.jsonl": "e8f6ff76d8fb10da50b7d1c131da5195deffa583b0b167dd165298eb1afdb619",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-333428654345467113-F5UA-35TK-RTYM-XF35.result.json": "bd9346e587c8943899818b073bd9facec4296575feeb48118315e40b059a4f88",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-333428654345467113-F5UA-35TK-RTYM-XF35.jlog": "fb233fb25ef7ed1588e912fefe266403cdb4015df9a4d5b83b6a72cef3164c26",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-333428654345467113-F5UA-35TK-RTYM-XF35.psum": "8a93922ddc2e72443e0a07784f6f55e3876a0d7afc8c1db5d1a9e5aec011b3e5",
+    "local-only/第三问/scheme2-http-bb5a53347c76/运行结果.json": "1115be0d7127242d7388fe0345d519a4b0e547356926d6879d1e5d68986ae6a3",
+    "local-only/第三问/scheme2-http-bb5a53347c76/请求响应日志.jsonl": "4a4a4c092e6060e25448b7af064a407b77359d8ff095a209887851dc9fa30e4e",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-4194591981019921505-VPPX-944E-PF3G-YHT4.result.json": "0187b3e7e9ea47b8e02c7272ecb46a5d164ab338b545af910f2688612023766d",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-4194591981019921505-VPPX-944E-PF3G-YHT4.jlog": "0de9d63d96ca05dd3714dad28c8f73a1c2a2aaa8868ce16e88fb15418d421bbb",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-4194591981019921505-VPPX-944E-PF3G-YHT4.psum": "8dd52dc21ac263a5b470eee38f71d9a3e5ba0b23dc2813d11bf7d29f0a03d181",
+    "local-only/第三问/scheme2-http-18e0c32d9961/运行结果.json": "4c486390a204721a1c0e3cf8f5c69d7bf59ca840e88414e05eec11cc6c11dfc8",
+    "local-only/第三问/scheme2-http-18e0c32d9961/请求响应日志.jsonl": "8f4bc76403fc42583eea0bff0631a34d877c4a4e932d53dd60ea87ec21afdf84",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-5215787244460935895-WWEW-QGFP-ZABZ-47X8.result.json": "a124a4022c4b8b6163716ef3be536682a00718ad807e85c18d6f6b2a50e6d0ec",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-5215787244460935895-WWEW-QGFP-ZABZ-47X8.jlog": "a294ee0e40f29f086dbdc33fe32ef4811358dfcb0a4f09adb1faf62e6595ec72",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-5215787244460935895-WWEW-QGFP-ZABZ-47X8.psum": "0cba9691516ae3fb571ee2c64919368922e3409a9e92eb35214bc7c4e7622c9f",
+    "local-only/第三问/scheme2-http-0bd6a789bc0e/运行结果.json": "07ca51915ef0b1ea2e47707eacc7a5c93f3f66fd37d5a83c93c18456986a4094",
+    "local-only/第三问/scheme2-http-0bd6a789bc0e/请求响应日志.jsonl": "b4da0c77ea46153483df84f12bdb72f28f0d03412cf8fc53af61115a56875a0b",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-549385803263705191-9QDY-39K6-EAX8-XKNR.result.json": "da7eade83cfba7c860de2868021ba4c7e27d59e845c374d51479b92003625f2b",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-549385803263705191-9QDY-39K6-EAX8-XKNR.jlog": "af63de315c0815d6a0e1811093bcef1eb638be52cc1d31e5d1ceda0b9055c300",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-549385803263705191-9QDY-39K6-EAX8-XKNR.psum": "dfbf038d174823000bd81e52b53bc2b0c80b7a6c9d273ed65bd89b17438b0541",
+    "local-only/第三问/scheme2-http-1f9fec6135cf/运行结果.json": "19bc50e9cf512421ffdbf24aa48b9a7d4c8f2c7b496cfb64f820154d0a69a8f0",
+    "local-only/第三问/scheme2-http-1f9fec6135cf/请求响应日志.jsonl": "b204b5b927da30b431ab1656bb4b9d87e3e1f22434036fb9706a66f7ef30d7b6",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-7215385160609560253-FVXF-BZD6-AT2W-PGEB.result.json": "b0da20c6e7c4518fa7933a7a2512f04315c8c4a1b9fc7707569962d70dd30f42",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-7215385160609560253-FVXF-BZD6-AT2W-PGEB.jlog": "2ba3b59af0dfd0f59a854c140502fe0ef25757f42a741a87bd31eb487e877c2b",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-7215385160609560253-FVXF-BZD6-AT2W-PGEB.psum": "90cfa6713e4b571b282a5fedc97f198137697e9d597b6b8387c2b85f47b0584b",
+    "local-only/第三问/scheme2-http-f021da5183c4/运行结果.json": "d634d913224470cba9639cdc21b06f50c783714a1008b4bd089e0133999b373b",
+    "local-only/第三问/scheme2-http-f021da5183c4/请求响应日志.jsonl": "ff83644c78ae16d27557270669ce846829a36e1dc31f57bb827c538a50cb235f",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-8293131636483620287-4HXX-WDAY-UJR9-B7JV.result.json": "19f7da5e5ffef08810286d928438720b04e6886f2c88cc7b75f2a664f4979d43",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-8293131636483620287-4HXX-WDAY-UJR9-B7JV.jlog": "03ffba36f64eeb047b666294c863f59fc8f6891bac87c64664a89f7772128693",
+    "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/s2/practice-p3-8293131636483620287-4HXX-WDAY-UJR9-B7JV.psum": "6e0d08790b1863377c7ac134ac3704fe543d9ea36c4b982f08e30acab2f59632",
+    "local-only/第三问/scheme2-http-e11a62ade800/运行结果.json": "28b1be3c0524c412782298468986c21458ba873186e7100caa6e945d8b015aad",
+    "local-only/第三问/scheme2-http-e11a62ade800/请求响应日志.jsonl": "4a4419b0fec00b28134119ce12b1bb238f24da7499ef12bf4ed1a2dcb3d5f31d",
+    "scripts/evaluate_q3_practice_groups.py": "de8012751ec8418e4078cae8f645e1f4ea0ddfbc86611d752b7a46e7599163b5",
+    "scripts/analyze_q3_practice_log.py": "7a4b3554709b5ae7c2edab164d2bcee1af50277147878b24732b1bbe8782dd43",
+    "scripts/build_q3_scheme1_assets.py": "0605ed575a15a31c1be14b32f6898d8721aeb57a3f8eb635ec41e43903cd826a"
+  },
+  "图表": [
+    "两组演练_每目标时间与费用",
+    "两组演练_同目标数分组与逐局结果"
+  ],
+  "结论": "当前数据优先支持方案一；未配对且每组仅6局，控制目标数量后优势缩小，不宣称总体显著或普遍优越"
+}
