@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from io import BytesIO
 import json
 import math
 import platform
@@ -51,7 +52,10 @@ def setup_style():
 
 
 def save_figure(fig, name):
-    fig.savefig(FIGURES / (name + ".png"), dpi=220, bbox_inches="tight")
+    # 先在内存中编码，再以只写模式落盘，避免部分 Windows 环境拒绝 w+b 打开图片。
+    buffer=BytesIO()
+    fig.savefig(buffer,format="png",dpi=220,bbox_inches="tight")
+    (FIGURES / (name + ".png")).write_bytes(buffer.getvalue())
     path = FIGURES / (name + ".svg")
     fig.savefig(path, bbox_inches="tight", metadata={"Date": None})
     path.write_text("\n".join(line.rstrip() for line in path.read_text(encoding="utf-8").splitlines()) + "\n", encoding="utf-8", newline="\n")
@@ -234,11 +238,12 @@ def figure_reliable(data):
     save_figure(fig,"04_可靠二次检测域")
 
 
-def search_overlays(ax,run,show_analytic=True):
+def search_overlays(ax,run,show_analytic=True,show_reference_line=True):
     region=run["region"]; result=run["search"]
     boundary=to_local(run["reliable_boundary"],region)
     ax.plot(*close_curve(boundary).T,color=INK,lw=1.2,label="可靠接收域边界")
-    ax.axhline(0,color=GRAY,ls="--",lw=.8)
+    if show_reference_line:
+        ax.axhline(0,color=GRAY,ls="--",lw=.8)
     if show_analytic:
         analytic=to_local(result["analytic_candidates"],region)
         ax.scatter(*analytic.T,marker="x",color=RED,s=45,label="中心线解析候选",zorder=6)
@@ -250,8 +255,10 @@ def search_overlays(ax,run,show_analytic=True):
 
 
 def figure_heatmaps(data):
-    fig,axes=plt.subplots(2,2,figsize=(13,12),constrained_layout=True)
+    """热力图同时呈现首次观测和三类边界；圆心须转换到各案例局部坐标。"""
+    fig,axes=plt.subplots(2,2,figsize=(17,14),constrained_layout=True)
     for ax,run in zip(axes.flat,data["runs"]):
+        region=run["region"]
         grid=run["search"]["grid"]
         diameters=np.asarray(grid["diameter_m"],dtype=float)
         finite=diameters[np.isfinite(diameters)]
@@ -261,12 +268,55 @@ def figure_heatmaps(data):
             shading="auto",cmap="YlGnBu_r",norm=LogNorm(vmin=best,vmax=ceiling),rasterized=True)
         colorbar=fig.colorbar(mesh,ax=ax,pad=.02,shrink=.8,extend="max")
         colorbar.set_label("最坏定位直径（米，对数色标）")
-        search_overlays(ax,run)
-        ax.set_title(f"{run['case']['name_zh']}\n当前最优 {best:.3f} 米")
+        search_overlays(ax,run,show_reference_line=False)
+
+        # 目标圆限制未知目标，不限制检测站；三类边界用不同颜色区分。
+        target_center=to_local(region.target_center,region)
+        ax.add_patch(Circle(target_center,region.target_radius,fill=False,
+            edgecolor="#97528D",linestyle=(0,(6,3)),linewidth=1.5,zorder=4,
+            label="1800 米目标区域边界"))
+        outline=physical_outline(region,local=True)
+        ax.fill(*outline.T,color=TEAL,alpha=.12,zorder=3)
+        ax.plot(*close_curve(outline).T,color=TEAL,linewidth=1.4,zorder=5,
+            label="首次目标可行域边界（含 ±1°）")
+
+        boundary=to_local(run["reliable_boundary"],region)
+        # 同时包含第一站、完整物理域、可靠域和目标圆的前向交点；
+        # 保留等比例局部视图，不把整圆强行塞入画面而压缩热力图。
+        right=max(float(boundary[:,0].max()),float(outline[:,0].max()),0.)
+        if abs(target_center[1])<=region.target_radius:
+            forward_hit=target_center[0]+math.sqrt(max(0.,region.target_radius**2-target_center[1]**2))
+            right=max(right,float(forward_hit))
+        left=min(float(boundary[:,0].min()),float(outline[:,0].min()),0.)
+        x_margin=max(90.,(right-left)*.07)
+        lower=min(float(boundary[:,1].min()),float(outline[:,1].min()),0.)
+        upper=max(float(boundary[:,1].max()),float(outline[:,1].max()),0.)
+        ax.set_xlim(left-x_margin,right+x_margin)
+        ax.set_ylim(lower-100.,upper+100.)
+
+        ray_end=right+.55*x_margin
+        ax.plot([0,ray_end],[0,0],color=BLUE,linestyle="--",linewidth=1.3,zorder=6,
+            label="首次观测方向射线")
+        ax.annotate("",xy=(ray_end,0),xytext=(ray_end-.12*(right-left),0),
+            arrowprops={"arrowstyle":"-|>","color":BLUE,"lw":1.3},zorder=6)
+        ax.scatter([0],[0],s=75,color=INK,edgecolor="white",linewidth=1.1,zorder=9,
+            label="第一观测点 $S_1$（局部原点）")
+        ax.annotate("$S_1$",(0,0),xytext=(-12,12),textcoords="offset points",
+            color=INK,fontsize=11,fontweight="bold",zorder=10,
+            bbox={"facecolor":"white","edgecolor":"none","alpha":.85,"pad":1.5})
+        station=region.station
+        ax.set_title(f"{run['case']['name_zh']}｜当前数值最优 {best:.3f} 米\n"
+            f"第一站全局坐标 ({station[0]:g}, {station[1]:g}) 米；示向度 {region.bearing_deg:g}°",
+            fontsize=11)
         ax.set_facecolor("#F3F4F5")
-    axes[0,0].legend(loc="center left",fontsize=7.8)
-    fig.suptitle("第二检测点的鲁棒定位质量：侧向区域可形成较好的交会",fontsize=17)
-    footer(fig,"灰白区无有限可靠测向指标；每幅独立色标，上端超过 90% 样本分位的值用顶端颜色显示")
+    handles,labels=axes[0,0].get_legend_handles_labels()
+    fig.legend(handles,labels,loc="lower center",bbox_to_anchor=(.5,.063),ncol=4,
+        fontsize=9,frameon=True,columnspacing=1.5,handlelength=2.6)
+    fig.suptitle("最坏定位直径热力图：目标边界、首次观测与第二站候选位置",fontsize=18)
+    footer(fig,"各图采用以第一站为原点、首次示向为横轴的等比例局部坐标；目标圆仅约束目标位置\n"
+        "灰白区无有限可靠测向指标；每幅独立对数色标，上端超过 90% 样本分位的值用顶端颜色显示")
+    # rect 的末两项为宽、高；顶部不超过1，避免总标题落进子图。
+    fig.get_layout_engine().set(rect=(0,.15,1,.85))
     save_figure(fig,"05_最坏定位直径热力图")
 
 

@@ -1,6 +1,6 @@
 {
   "来源": "构造算例，非官方模拟器测试",
-  "执行模式": "完整计算与图表构建",
+  "执行模式": "仅重画已归档计算结果",
   "Python": "3.12.14",
   "依赖版本": {
     "numpy": "2.3.5",
@@ -9,9 +9,9 @@
   },
   "中文字体": "C:\\Windows\\Fonts\\msyh.ttc",
   "绘图代码SHA256": {
-    "scripts/build_q2_assets.py": "355463b405cd70f2adeebeda7b159a9ea62e83e035697c26f4805e540ca4dc2d"
+    "scripts/build_q2_assets.py": "6f8ab28015146957daf3b05ac79f6388776d2a254cb3280681c48d7bce6f600b"
   },
-  "执行时Git_HEAD": "6db95cc507dbe686b200ab007972f34189d15e0d",
+  "执行时Git_HEAD": "f6d9ca53e2128303d80cbceae4c3efbd22dba672",
   "计算来源记录": {
     "来源": "构造算例，非官方模拟器测试",
     "configuration": {
