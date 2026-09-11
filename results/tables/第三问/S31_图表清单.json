@@ -1,0 +1,22 @@
+{
+  "说明": "5张单局轨迹、1张总览、1张费用图、1张根因诊断图，各PNG/SVG",
+  "数据SHA256": "9e1c149b8efa6976cc50f4e23c5340e1725085cc4329034c2b9020c53eb5b796",
+  "图表SHA256": {
+    "results/figures/第三问/S31_五局轨迹总览.png": "503b2dfbe93042507e1db2154af2ede0a705c25fb53c0c2698872aa0474254f7",
+    "results/figures/第三问/S31_五局轨迹总览.svg": "1d68a3f2e5da2a11d01e36446b028ea3ff72fa1a21e196de87f7382bdeab3d28",
+    "results/figures/第三问/S31实际演练轨迹/S31-1_实际轨迹.png": "75fcc1695a1b06477041e8c9655708b89f0d9ecbcfcc502639afb7cd10e939db",
+    "results/figures/第三问/S31实际演练轨迹/S31-1_实际轨迹.svg": "3f394b35ddf67923e20d0761094b2675d217c2b1d0c191d62e66512f6ec7e942",
+    "results/figures/第三问/S31实际演练轨迹/S31-2_实际轨迹.png": "640af6c7f3440a68c632c2bf58cfe7cb9a73710a35f601e414611e0a5ac1d46a",
+    "results/figures/第三问/S31实际演练轨迹/S31-2_实际轨迹.svg": "56fe2c51c9ae90d13fc93ca08a65634575263c4de0361a21e82aa3f400e30386",
+    "results/figures/第三问/S31实际演练轨迹/S31-3_实际轨迹.png": "22288b34e2414ccd816d8c2c23cce9de973e4ead5c8e004d77119550bce7299a",
+    "results/figures/第三问/S31实际演练轨迹/S31-3_实际轨迹.svg": "28e8821bf906b4bf5876c5dea24406698c85290c1f01881f3efe1d986a9f2cc8",
+    "results/figures/第三问/S31实际演练轨迹/S31-4_实际轨迹.png": "4a13bd686d955537c925da0436a0f77bad1ef769f1fce3eb631bf00ec9ac318e",
+    "results/figures/第三问/S31实际演练轨迹/S31-4_实际轨迹.svg": "252e50383fbb0e421c4ca3d65242d05d941639527513ef64ff8dfb1ba7f500b0",
+    "results/figures/第三问/S31实际演练轨迹/S31-5_实际轨迹.png": "1b720fbce424bbc8e1b6342e122597abff6117d15d9ec5f651f999f1fb8ae682",
+    "results/figures/第三问/S31实际演练轨迹/S31-5_实际轨迹.svg": "7796b28180d956a6e849b74238cd5958ecb8e60389896005ce580132df2f3718",
+    "results/figures/第三问/S31_费用与检测构成.png": "f4c2d62b0ce6be23811b774cb305ecc0be39a9718e2ff5bc08d16346e056d9c9",
+    "results/figures/第三问/S31_费用与检测构成.svg": "178810b4449aa442e4b314ab980db5d3557639e677d199e2ba4a83fd481ab098",
+    "results/figures/第三问/S31_扇尖判定与跨区绕行.png": "ec588e025f3cd8e080a3be6af5f0242ed31236aa598cb29d6ed6da4fae58a030",
+    "results/figures/第三问/S31_扇尖判定与跨区绕行.svg": "96fa3834edc60e6e71e59bd876521ad17157f9e13ec864574c5d002e3fc46b10"
+  }
+}
