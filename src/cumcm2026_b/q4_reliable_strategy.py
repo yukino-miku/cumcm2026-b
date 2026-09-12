@@ -23,15 +23,19 @@ class ReliableConfig(DiscoveryConfig):
     route_feasible_candidates: bool = True
     skip_out_of_range: bool = True
     unknown_scan_spacing_m: float = 100.
+    coverage_mesh: str = 'compact'
+    unknown_novelty: bool = True
 
     def __post_init__(self):
         super().__post_init__()
         if any(not isinstance(getattr(self, name), bool) for name in
-               ('discovery_safeguard', 'route_feasible_candidates', 'skip_out_of_range')):
+               ('discovery_safeguard', 'route_feasible_candidates', 'skip_out_of_range', 'unknown_novelty')):
             raise ValueError('清除优先版开关必须为布尔值')
         value = self.unknown_scan_spacing_m
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
             raise ValueError('unknown_scan_spacing_m必须是非负有限数')
+        if self.coverage_mesh not in {'compact', 'lattice'}:
+            raise ValueError('coverage_mesh必须为compact或lattice')
 
 
 def candidate_pool(state, hypotheses):
@@ -73,11 +77,17 @@ class ReliableFour(DiscoveryFour):
         self._cover_cache = {}
         self._finishing = False
         self.discovery_stations = []
+        self._sample_visibility = {}
+        self._unknown_samples = {}
 
     def complete(self):
         return super().complete() or all(s.status in {'cleared', 'absent'} for s in self.channels.values())
 
     def _skip_measure(self, state, point):
+        if state.status == 'unknown' and self._all_sources_found():
+            self._log({'动作': '跳过检测', '频道': state.channel, '位置': np.asarray(point).tolist(),
+                       '原因': '已发现16个不同频道源，达到数量上界，继续处理已知源'})
+            return True
         if super()._skip_measure(state, point):
             return True
         if self.config.skip_out_of_range and state.status == 'found':
@@ -92,6 +102,8 @@ class ReliableFour(DiscoveryFour):
     def _opportunistic(self, point, primary):
         if not self.config.opportunistic or self.complete():
             return
+        if self.config.unknown_scan_spacing_m == 600 and not self.config.unknown_novelty:
+            return super()._opportunistic(point, primary)
         point = np.asarray(point)
         known, unknown = [], []
         for state in self.channels.values():
@@ -105,6 +117,10 @@ class ReliableFour(DiscoveryFour):
                 if max_distance(state.region.vertices, point) <= 999.5:
                     known.append(state)
             else:
+                if self.config.unknown_novelty and gap < 600 and not self._has_sample_gain(state, point):
+                    self._log({'动作': '暂缓近站未知扫描', '频道': state.channel, '位置': point.tolist(),
+                               '原因': '离散位置朝向样本没有新增接收机会；不构成不存在证书，仍保留末尾发现保障'})
+                    continue
                 unknown.append(state)
         known.sort(key=lambda s: (len(s.measured_sites), s.channel))
         unknown.sort(key=lambda s: (s.channel != self.client.state.channel, len(s.measured_sites), s.channel))
@@ -120,10 +136,48 @@ class ReliableFour(DiscoveryFour):
                 break
             self._measure(state, point, '顺路检测')
 
+    def _all_sources_found(self):
+        return sum(s.status in {'found', 'cleared'} for s in self.channels.values()) == 16
+
+    def _sample_mask(self, point):
+        key = tuple(map(float, point))
+        if key not in self._sample_visibility:
+            grid = np.arange(-1800, 1801, 100.)
+            x, y = np.meshgrid(grid, grid)
+            positions = np.column_stack((x.ravel(), y.ravel()))
+            positions = positions[np.linalg.norm(positions, axis=1) <= 1800]
+            boundary = np.arange(360) * math.pi / 180
+            positions = np.vstack((positions, 1800 * np.column_stack((np.cos(boundary), np.sin(boundary)))))
+            axes = np.arange(36) * math.pi / 18
+            vectors = np.asarray(point) - positions
+            self._sample_visibility[key] = ((np.linalg.norm(vectors, axis=1) <= 1000)[:, None]
+                & ((vectors[:, :1] * np.cos(axes) + vectors[:, 1:] * np.sin(axes)) >= 0))
+        return self._sample_visibility[key]
+
+    def _has_sample_gain(self, state, point):
+        visible = self._sample_mask(point)
+        count, remaining = self._unknown_samples.get(state.channel, (0, np.ones_like(visible)))
+        for negative in state.negative_sites[count:]:
+            remaining &= ~self._sample_mask(negative)
+        self._unknown_samples[state.channel] = (len(state.negative_sites), remaining)
+        return bool(np.any(remaining & visible))
+
     def _observation_plan(self, state, current):
         if (not self.config.route_feasible_candidates or state.localization_count >= self.config.max_localization_measurements
                 or self.config.planning_seconds == 0):
             return super()._observation_plan(state, current)
+        # 先保留旧版已经合格的选择，仅在原候选会被路线规则拒绝时搜索替代。
+        original = super()._observation_plan(state, current)
+        if original['动作'] != '追加测向' or not len(self._remaining) or not self.config.route_planning:
+            return original
+        p = original['位置']
+        proj = task_projection(current, p, original.get('预测目标代表位置', minimum_circle(state.region.vertices)[0]), self._remaining)
+        detour = math.dist(current, p) + math.dist(p, self._remaining[0]) - math.dist(current, self._remaining[0])
+        rejected = detour > self.config.localization_detour_limit_m or (self.config.task_routing
+            and proj['预测完整任务绕行_米'] > self.config.localization_detour_limit_m
+            and proj['预测完整任务绕行_米'] > proj['预测延后最小绕行_米'] + 1e-6)
+        if not rejected:
+            return original
         started = time.monotonic()
         vertices = state.region.vertices
         hypotheses = joint_hypotheses(state, self.config.position_samples) if self.config.direction_feedback else []
@@ -188,12 +242,13 @@ class ReliableFour(DiscoveryFour):
                     间距约束已放宽=relaxed, 建议相邻补测间距_米=self.config.probe_spacing_m,
                     规划耗时_秒=time.monotonic() - started,
                     评分性质='先满足绕行与完整任务约束，再作有限候选评分；支持度不是概率或接收保证')
+        best['原候选绕行_米'] = detour
         return best
 
     def _coverage(self, state):
         key = tuple(map(tuple, state.negative_sites))
         if key not in self._cover_cache:
-            self._cover_cache[key] = coverage_status(state.negative_sites)
+            self._cover_cache[key] = coverage_status(state.negative_sites, self.config.coverage_mesh)
         return self._cover_cache[key]
 
     def _refresh_absence(self):
@@ -204,13 +259,15 @@ class ReliableFour(DiscoveryFour):
                 continue
             certificate = self._coverage(state)
             if not certificate['未覆盖单元']:
-                state.absence_certificate = {'方法': '950米三角网连续凸包发现证书', **certificate,
+                state.absence_certificate = {'方法': '三角网连续凸包发现证书', '网格': self.config.coverage_mesh, **certificate,
                                              '实际负观测站': state.negative_sites.copy()}
                 state.status = 'absent'
                 self._log({'动作': '频道不存在证书', '频道': state.channel, '证书': state.absence_certificate})
 
     def _needed_stations(self):
-        stations, triangles = discovery_mesh()
+        if self._all_sources_found():
+            return np.empty((0, 2))
+        stations, triangles = discovery_mesh(self.config.coverage_mesh)
         needed = set()
         for state in self.channels.values():
             if state.status != 'unknown':

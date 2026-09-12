@@ -31,6 +31,17 @@ def test_mesh_covers_closed_domain_with_reliable_triangles_and_rejects_inner13_c
         assert np.diff(np.r_[bearings, bearings[0] + 2 * math.pi]).max() < math.pi
 
 
+def test_compact_mesh_encloses_entire_disk_and_all_edges_have_distance_margin():
+    from scipy.spatial import ConvexHull
+    stations, cells = discovery_mesh('compact')
+    assert len(stations) == 25 and len(cells) == 36
+    assert -ConvexHull(stations).equations[:, 2].max() > 1835
+    triangles = stations[cells]
+    assert np.linalg.norm(triangles - np.roll(triangles, 1, axis=1), axis=2).max() < 984
+    assert coverage_status(stations, 'compact')['已覆盖单元数'] == 36
+    assert coverage_status(search_stations(), 'compact')['未覆盖单元']
+
+
 def test_strict_convex_substitution_is_checked_in_distance_and_position():
     stations, triangles = discovery_mesh()
     vertices = stations[triangles[20]]
@@ -114,14 +125,14 @@ def test_outward_boundary_sources_are_all_cleared_with_truth_hidden_until_exit(c
     client.close()
     assert result['运行成功'] and result['全部完成证据'], result['异常']
     assert truth['全部清除'] and result['清除数'] == count
-    assert 0 < len(result['发现保障站坐标']) <= 18
+    assert 0 < len(result['发现保障站坐标']) <= 12
     assert not result['已发现未清除频道']
     targets = {s['频道']: s['位置'] for s in truth['目标']}
     for row in result['频道记录']:
         assert row['追加测向次数'] <= 8
         if row['不存在证书'] is not None:
             assert row['频道'] not in targets
-            assert not coverage_status(row['不存在证书']['实际负观测站'])['未覆盖单元']
+            assert not coverage_status(row['不存在证书']['实际负观测站'], row['不存在证书']['网格'])['未覆盖单元']
     for e in result['动作记录']:
         if '外包顶点' in e:
             assert min_distance(e['外包顶点'], targets[e['频道']]) < 1e-5
@@ -142,6 +153,24 @@ def test_already_cleared_sixteen_does_not_run_exterior_discovery():
     result = ReliableFour(client).run()
     client.close()
     assert result['运行成功'] and result['清除数'] == 16 and not result['发现保障站坐标']
+
+
+def test_sixteen_found_sources_are_serviced_before_any_unknown_discovery():
+    solver = ReliableFour(RobotClient(LocalEnvironment([]), 'local-robot'))
+    for c in range(1, 17):
+        solver.channels[c].status = 'found'
+    assert not solver.complete() and not len(solver._needed_stations())
+    assert solver._skip_measure(solver.channels[20], np.zeros(2))
+
+
+def test_no_sample_gain_never_certifies_absence_or_deletes_discovery_stations():
+    solver = ReliableFour(RobotClient(LocalEnvironment([]), 'local-robot'))
+    state = solver.channels[1]
+    state.negative_sites = [[0., 0.]]
+    assert not solver._has_sample_gain(state, np.zeros(2))
+    solver._refresh_absence()
+    assert state.status == 'unknown' and state.absence_certificate is None
+    assert len(solver._needed_stations()) > 0
 
 
 def test_open_route_preserves_every_station_without_requiring_return():

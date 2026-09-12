@@ -16,6 +16,7 @@ from PIL import Image
 from evaluate_q4_discovery import (ROOT, TABLE, RUNS, BASELINE, IMPROVED, read, dump, run_path, sources)
 from evaluate_q4_feedback import TABLE as FIRST_TABLE, RUNS as FIRST_RUNS
 from build_q4_inner13_assets import setup_font
+from q4_archive_sources import verify_manifest
 from build_q4_zigzag_assets import trajectory
 from cumcm2026_b.q4_feedback_strategy import FeedbackFour, FeedbackConfig, joint_hypotheses, reception_support
 from cumcm2026_b.q4_local_env import LocalEnvironment
@@ -264,7 +265,9 @@ def main():
     first, final = read(FIRST_TABLE), read(TABLE)
     assert len(first['逐局']) == 136 and len(final['逐局']) == 24
     if args.verify:
-        assert read(MANIFEST) == manifest()
+        expected = read(MANIFEST)
+        assert expected.keys() == manifest().keys()
+        verify_manifest(ROOT, expected)
         for path in FIG.glob('*'):
             if path.suffix == '.png':
                 with Image.open(path) as im:

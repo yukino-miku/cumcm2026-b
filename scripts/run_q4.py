@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""第四问13站试验入口：默认本地构造；--mode http连接已选择第四问的模拟器。"""
+"""第四问清除优先入口：默认本地构造；--mode http连接已选择第四问的模拟器。"""
 import argparse
 from hashlib import sha256
 import json
@@ -15,10 +15,11 @@ from cumcm2026_b.q3_protocol import RobotClient, HttpTransport
 from cumcm2026_b.q4_local_env import make_case
 from cumcm2026_b.q4_spacing_strategy import SpacedFour, SpacingConfig
 from cumcm2026_b.q4_discovery_strategy import DiscoveryFour as FeedbackFour, DiscoveryConfig as FeedbackConfig
+from cumcm2026_b.q4_reliable_strategy import ReliableFour, ReliableConfig
 
 
 def provenance():
-    files = list((ROOT/'src/cumcm2026_b').glob('*.py')) + [ROOT/'scripts/run_q4.py', ROOT/'configs/q4_feedback.json', ROOT/'configs/q4_geometric_spacing.json']
+    files = list((ROOT/'src/cumcm2026_b').glob('*.py')) + [ROOT/'scripts/run_q4.py', ROOT/'configs/q4_reliable.json', ROOT/'configs/q4_feedback.json', ROOT/'configs/q4_geometric_spacing.json']
     result = {'源码_SHA256': {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in sorted(files)}}
     try:
         result['Git提交'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
@@ -40,7 +41,7 @@ def main():
     parser.add_argument('--error', choices=['hash', 'zero', 'plus', 'minus', 'alternating'], default='hash')
     parser.add_argument('--directional-fraction', type=float, default=.5)
     parser.add_argument('--orientation', choices=['random', 'outward', 'inward', 'tangent'], default='random')
-    parser.add_argument('--strategy', choices=['feedback', 'spacing'], help='feedback使用改进版；spacing恢复上一版几何间距策略')
+    parser.add_argument('--strategy', choices=['reliable', 'feedback', 'spacing'], help='默认reliable清除优先；feedback恢复上一版13站反馈策略；spacing恢复几何间距策略')
     parser.add_argument('--probe-spacing', type=float, help='优先拉开的相邻补测站间距（米）；0恢复未加间距的原几何选点')
     parser.add_argument('--no-opportunistic', action='store_true')
     parser.add_argument('--no-route-planning', action='store_true')
@@ -48,6 +49,7 @@ def main():
     parser.add_argument('--no-direction-feedback', action='store_true')
     parser.add_argument('--no-small-sweep', action='store_true')
     parser.add_argument('--no-task-routing', action='store_true')
+    parser.add_argument('--dense-unknown-scans', action='store_true', help='reliable可选实验：允许100米停点按离散方向增益补扫；测试中可能增加时间')
     parser.add_argument('--config', type=Path)
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
@@ -57,14 +59,19 @@ def main():
         parser.error('--directional-fraction必须在0和1之间')
     parameters = json.loads(args.config.read_text(encoding='utf-8')) if args.config else None
     extension_keys = {'small_sweep_limit', 'direction_feedback', 'task_routing', 'position_samples', 'scan_all_unknown'}
+    reliable_keys = {'discovery_safeguard', 'route_feasible_candidates', 'skip_out_of_range',
+                     'unknown_scan_spacing_m', 'coverage_mesh', 'unknown_novelty'}
     # 原配置文件或单独--probe-spacing 0保留历史恢复语义；显式--strategy优先。
-    strategy = args.strategy or ('feedback' if parameters and extension_keys.intersection(parameters)
-                                 else 'spacing' if parameters is not None or args.probe_spacing == 0 else 'feedback')
-    config_path = args.config or ROOT/'configs'/('q4_feedback.json' if strategy == 'feedback' else 'q4_geometric_spacing.json')
+    strategy = args.strategy or ('reliable' if parameters and reliable_keys.intersection(parameters)
+                                 else 'feedback' if parameters and extension_keys.intersection(parameters)
+                                 else 'spacing' if parameters is not None or args.probe_spacing == 0 else 'reliable')
+    config_path = args.config or ROOT/'configs'/({'reliable': 'q4_reliable.json', 'feedback': 'q4_feedback.json', 'spacing': 'q4_geometric_spacing.json'}[strategy])
     if parameters is None:
         parameters = json.loads(config_path.read_text(encoding='utf-8'))
     if strategy == 'spacing' and extension_keys.intersection(parameters):
         parser.error('spacing请使用q4_geometric_spacing.json或q4_inner13.json，不接受改进版专用配置')
+    if strategy != 'reliable' and (reliable_keys.intersection(parameters) or args.dense_unknown_scans):
+        parser.error('清除优先专用参数请使用--strategy reliable')
     if strategy == 'spacing' and (args.no_direction_feedback or args.no_small_sweep or args.no_task_routing):
         parser.error('三个改进开关只适用于--strategy feedback')
     if args.probe_spacing is not None:
@@ -73,7 +80,7 @@ def main():
         parameters['opportunistic'] = False
     if args.no_route_planning:
         parameters['route_planning'] = False
-        if strategy == 'feedback':
+        if strategy in {'feedback', 'reliable'}:
             parameters['task_routing'] = False
     if args.detour_limit is not None:
         parameters['localization_detour_limit_m'] = args.detour_limit
@@ -83,8 +90,10 @@ def main():
         parameters['small_sweep_limit'] = 0
     if args.no_task_routing:
         parameters['task_routing'] = False
-    config = (FeedbackConfig if strategy == 'feedback' else SpacingConfig)(**parameters)
-    solver = FeedbackFour if strategy == 'feedback' else SpacedFour
+    if args.dense_unknown_scans:
+        parameters.update(unknown_scan_spacing_m=100., unknown_novelty=True)
+    config = {'reliable': ReliableConfig, 'feedback': FeedbackConfig, 'spacing': SpacingConfig}[strategy](**parameters)
+    solver = {'reliable': ReliableFour, 'feedback': FeedbackFour, 'spacing': SpacedFour}[strategy]
     metadata = provenance()
     metadata['实际配置文件_SHA256'] = sha256(config_path.read_bytes()).hexdigest()
     metadata['策略入口'] = strategy
@@ -109,7 +118,8 @@ def main():
             truth = result['离线真值核验']
             print(json.dumps({'离线实际全清': truth['全部清除'], '离线遗漏频道': truth['遗漏频道']}, ensure_ascii=False))
         print(f'日志与结果：{output}')
-        return 0 if result['流程正常完成'] else 1
+        ok = result['运行成功'] if strategy == 'reliable' and config.discovery_safeguard else result['流程正常完成']
+        return 0 if ok else 1
     finally:
         client.close()
 

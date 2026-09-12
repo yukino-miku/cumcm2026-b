@@ -8,13 +8,29 @@ from functools import lru_cache
 import math
 
 import numpy as np
-from scipy.spatial import ConvexHull, QhullError
+from scipy.spatial import ConvexHull, QhullError, Delaunay
 
 from .q3_geometry import min_distance
 
 
-@lru_cache(maxsize=1)
-def discovery_mesh():
+@lru_cache(maxsize=2)
+def discovery_mesh(kind='lattice'):
+    if kind == 'compact':
+        from .q4_strategy import search_stations
+        angles = np.arange(12) * math.pi / 6
+        outer = 1900 * np.column_stack((np.cos(angles), np.sin(angles)))
+        stations = np.vstack((search_stations(), outer))
+        triangles = Delaunay(stations).simplices
+        vertices = stations[triangles]
+        hull = ConvexHull(stations)
+        # 剖分完整覆盖凸包；凸包每条边到原点距离>1800，所有单元直径<1000。
+        assert len(stations) == 25 and len(triangles) == 36
+        assert -hull.equations[:, 2].max() > 1835
+        assert np.linalg.norm(vertices - np.roll(vertices, 1, axis=1), axis=2).max() < 984
+        stations.flags.writeable = triangles.flags.writeable = False
+        return stations, triangles
+    if kind != 'lattice':
+        raise ValueError('未知发现网格')
     h = 950 * math.sqrt(3) / 2
     def point(k):
         return np.array([950 * (k[0] + k[1] / 2), h * k[1]])
@@ -36,14 +52,14 @@ def discovery_mesh():
     return stations, triangles
 
 
-def coverage_status(negative_sites):
+def coverage_status(negative_sites, kind='lattice'):
     """逐单元证书。严格凸包内替代与原三顶点两条分支，绝不由采样认证。
 
     替代站必须距单元的三个顶点均<=999.5米，且凸包严格包含三个顶点
     （1微米裕量）；原网格顶点则要求浮点坐标逐项相等，使用解析闭三角形证明。
     保守拒绝近边界替代站只会增加补扫，不会生成虚假的不存在证书。
     """
-    stations, triangles = discovery_mesh()
+    stations, triangles = discovery_mesh(kind)
     sites = np.asarray(negative_sites, dtype=float).reshape(-1, 2)
     covered, witnesses = [], []
     for ids in triangles:

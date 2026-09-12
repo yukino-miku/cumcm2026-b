@@ -13,6 +13,7 @@ from cumcm2026_b.q4_reliable_strategy import ReliableFour, ReliableConfig
 from cumcm2026_b.q4_local_env import make_case
 from cumcm2026_b.q3_protocol import RobotClient
 from verify_q4_reliable import verify_run
+from q4_archive_sources import verify_manifest
 
 RUNS = ROOT / 'results/models/第四问/清除优先对照'
 TABLE = ROOT / 'results/tables/第四问/清除优先对照.json'
@@ -78,6 +79,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--verify', action='store_true')
     args = parser.parse_args()
+    if not args.verify:
+        parser.error('本文件保留59237b0原型核验；新运行请用evaluate_q4_reliable_final.py')
     rows = []
     for i in range(len(CASES)):
         truth = None
@@ -85,7 +88,8 @@ def main():
             path = path_for(i, name)
             if path.exists():
                 r = read(path)
-                assert r['实验来源SHA256'] == sources() and r['构造参数'] == spec(i)
+                verify_manifest(ROOT, r['实验来源SHA256'])
+                assert r['构造参数'] == spec(i)
             else:
                 assert not args.verify, str(path)
                 env = make_case(**spec(i))
@@ -98,7 +102,11 @@ def main():
                     dump(path, r)
                 finally:
                     client.close()
-            assert r['配置'] == asdict(config(name))
+            expected = asdict(DiscoveryConfig(localization_detour_limit_m=800))
+            if name != '上一版':
+                expected.update(discovery_safeguard=name != '仅效率改进', route_feasible_candidates=name != '仅发现保障',
+                                skip_out_of_range=name != '仅发现保障', unknown_scan_spacing_m=600 if name == '仅发现保障' else 100)
+            assert r['配置'] == expected
             verify_run(r)
             if truth is not None:
                 assert r['离线真值核验']['目标'] == truth

@@ -11,6 +11,14 @@ ARCHIVES = {
                     'scripts/analyze_q4_spacing_practice.py', 'tests/test_q4_zigzag.py']},
 }
 
+for name in ['scripts/run_q4.py', 'scripts/q4_archive_sources.py', 'scripts/build_q4_feedback_assets.py',
+             'scripts/analyze_q4_feedback_practice.py', 'tests/test_q4_zigzag.py',
+             'scripts/evaluate_q4_reliable.py', 'scripts/verify_q4_reliable.py',
+             'src/cumcm2026_b/q4_coverage.py', 'src/cumcm2026_b/q4_reliable_strategy.py', 'tests/test_q4_reliable.py']:
+    values = ARCHIVES.get(name, [])
+    ARCHIVES[name] = ([values] if isinstance(values, str) else values) + [
+        'docs/第四问/历史代码/' + name.rsplit('/', 1)[-1].replace('.py', '_59237b0.py.txt')]
+
 
 def matches_source(root, relative, expected):
     candidates = [root/relative]

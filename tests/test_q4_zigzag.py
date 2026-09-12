@@ -123,9 +123,10 @@ def test_withdrawn_zigzag_http_entry_uses_current_geometry_and_preserves_zero_re
             assert '离线真值核验' not in result and result['运行来源']['源码_SHA256']
             assert result['配置']['localization_detour_limit_m'] == (400 if spacing == 0 else 800)
             assert result['配置']['probe_spacing_m'] == (100 if spacing is None else spacing)
-            assert result['运行来源']['策略入口'] == ('spacing' if spacing == 0 else 'feedback')
+            assert result['运行来源']['策略入口'] == ('spacing' if spacing == 0 else 'reliable')
             if spacing != 0:
                 assert result['配置']['direction_feedback'] and result['配置']['small_sweep_limit'] == 4
+                assert result['配置']['discovery_safeguard'] and result['配置']['coverage_mesh'] == 'compact'
             assert 'zigzag_forward_m' not in result['配置']
             assert '折线' not in result['方案']
             assert '折线方案已按用户要求撤回' in process.stdout
@@ -133,4 +134,3 @@ def test_withdrawn_zigzag_http_entry_uses_current_geometry_and_preserves_zero_re
         finally:
             server.shutdown()
             thread.join(timeout=5)
-

@@ -98,10 +98,10 @@ def verify_run(result):
             s = states[c]
             cert = e['证书']
             assert s.status == 'unknown' and cert['实际负观测站'] == s.negative_sites
-            assert cert['未覆盖单元'] == [] and cert['已覆盖单元数'] == cert['总单元数'] == 42
+            mesh, triangles = discovery_mesh(cert.get('网格', 'lattice'))
+            assert cert['未覆盖单元'] == [] and cert['已覆盖单元数'] == cert['总单元数'] == len(triangles)
             sites = np.asarray(s.negative_sites)
-            mesh, triangles = discovery_mesh()
-            assert len(cert['单元证据']) == 42
+            assert len(cert['单元证据']) == len(triangles)
             for ids, witness in zip(triangles, cert['单元证据']):
                 vertices = mesh[ids]
                 points = sites[witness['负观测序号']]

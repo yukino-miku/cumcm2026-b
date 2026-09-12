@@ -24,7 +24,7 @@ from analyze_q4_practice_4 import (matching_logs, public_header, read, write, di
                                    audit_actions, audit_trace, is_fixed, RESULT_KEYS, COLORS)
 from analyze_q4_spacing_practice import summarize, draw, handles, extra_analysis
 from build_q4_inner13_assets import setup_font
-from q4_archive_sources import matches_source
+from q4_archive_sources import matches_source, verify_manifest
 from cumcm2026_b.q4_strategy import DirectionalRegion, DirectionalChannel, search_stations
 from cumcm2026_b.q3_geometry import max_distance, min_distance, minimum_circle, sweep_path
 from cumcm2026_b.q3_geometry import principal_axes, finish_bound, angular_interval, add_wedge, DELTA
@@ -678,7 +678,10 @@ def main():
             for path, value in r['结果']['运行来源']['源码_SHA256'].items(): assert matches_source(ROOT, path, value), path
     data = evaluation(runs)
     if args.verify:
-        assert read(TABLE) == data and read(MANIFEST) == manifest(runs)
+        assert read(TABLE) == data
+        expected = read(MANIFEST)
+        assert expected.keys() == manifest(runs).keys()
+        verify_manifest(ROOT, expected)
         assert len(list(FIG.glob('*.png'))) == len(list(FIG.glob('*.svg'))) == 10
         for path in FIG.glob('*'):
             if path.suffix == '.png':
