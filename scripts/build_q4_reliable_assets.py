@@ -30,7 +30,10 @@ MANIFEST = ROOT / 'results/tables/第四问/清除优先版图文_来源校验.j
 def save(fig, name):
     FIG.mkdir(parents=True, exist_ok=True)
     for ext in ['.png', '.svg']:
-        fig.savefig(FIG / (name + ext), dpi=190, bbox_inches='tight', facecolor='white')
+        path = FIG / (name + ext)
+        fig.savefig(path, dpi=190, bbox_inches='tight', facecolor='white', metadata={'Date': None} if ext == '.svg' else None)
+        if ext == '.svg':
+            path.write_bytes(path.read_bytes().replace(b'\r\n', b'\n'))
     plt.close(fig)
 
 
