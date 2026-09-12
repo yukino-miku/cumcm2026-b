@@ -18,7 +18,7 @@
   "task_routing": true,
   "position_samples": 41,
   "scan_all_unknown": true,
-  "discovery_safeguard": false,
+  "discovery_safeguard": true,
   "route_feasible_candidates": true,
   "skip_out_of_range": true,
   "unknown_scan_spacing_m": 600,

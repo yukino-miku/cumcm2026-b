@@ -20,7 +20,6 @@ from evaluate_q4_reliable_final import TABLE as COMPARISON, RUNS as COMPARISON_R
 from evaluate_q4_reliable import TABLE as PROTOTYPE, RUNS as PROTOTYPE_RUNS
 from build_q4_inner13_assets import setup_font
 from cumcm2026_b.q4_coverage import discovery_mesh
-from q4_archive_sources import verify_manifest
 
 FIG = ROOT / 'results/figures/第四问/清除优先版'
 REPORT = ROOT / 'docs/第四问/清除优先版_方法与验证.md'
@@ -277,9 +276,7 @@ def manifest():
             ROOT / 'configs/q4_reliable.json', ROOT / 'scripts/run_q4.py', ROOT / 'tests/test_q4_reliable.py']
     paths += list(RUNS.rglob('*.gz')) + list(COMPARISON_RUNS.rglob('*.gz')) + list(PROTOTYPE_RUNS.rglob('*.gz'))
     paths += [ROOT / p for p in sources()]
-    result = {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in sorted(set(paths))}
-    result['configs/q4_reliable.json'] = sha256((ROOT / 'docs/第四问/历史代码/q4_reliable_aa0dbbc.json.txt').read_bytes()).hexdigest()
-    return result
+    return {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in sorted(set(paths))}
 
 
 def main():
@@ -287,11 +284,9 @@ def main():
     p.add_argument('--verify', action='store_true')
     args = p.parse_args()
     data = read(TABLE)
-    assert read(ROOT / 'docs/第四问/历史代码/q4_reliable_aa0dbbc.json.txt') == data['默认配置']
+    assert read(ROOT / 'configs/q4_reliable.json') == data['默认配置']
     if args.verify:
-        expected = read(MANIFEST)
-        assert expected.keys() == manifest().keys()
-        verify_manifest(ROOT, expected)
+        assert read(MANIFEST) == manifest()
         assert len(list(FIG.glob('*.png'))) == len(list(FIG.glob('*.svg'))) == 23
         for path in FIG.glob('*'):
             if path.suffix == '.png':

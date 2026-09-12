@@ -20,14 +20,6 @@ for name in ['scripts/run_q4.py', 'scripts/q4_archive_sources.py', 'scripts/buil
         'docs/第四问/历史代码/' + name.rsplit('/', 1)[-1].replace('.py', '_59237b0.py.txt')]
 
 
-for name in ['configs/q4_reliable.json', 'scripts/run_q4.py', 'scripts/q4_archive_sources.py',
-             'scripts/build_q4_reliable_assets.py', 'tests/test_q4_zigzag.py']:
-    values = ARCHIVES.get(name, [])
-    stem, extension = name.rsplit('/', 1)[-1].rsplit('.', 1)
-    ARCHIVES[name] = ([values] if isinstance(values, str) else values) + [
-        f'docs/第四问/历史代码/{stem}_aa0dbbc.{extension}.txt']
-
-
 def matches_source(root, relative, expected):
     candidates = [root/relative]
     if relative in ARCHIVES:
