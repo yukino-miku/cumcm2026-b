@@ -1,0 +1,15 @@
+{
+  "angle_samples": 9,
+  "candidate_limit": 24,
+  "planning_seconds": 0.8,
+  "max_localization_measurements": 8,
+  "max_actions": 10000,
+  "opportunistic": true,
+  "opportunistic_limit": 4,
+  "runtime_limit": 1200.0,
+  "route_planning": true,
+  "route_action_limit": 24,
+  "localization_detour_limit_m": 400.0,
+  "skip_localized": true,
+  "consecutive_no_signal_limit": 2
+}
