@@ -181,7 +181,11 @@ def setup_font():
 def save_figure(fig, name):
     FIG.mkdir(parents=True, exist_ok=True)
     for suffix in ['.png', '.svg']:
-        fig.savefig(FIG/(name+suffix), dpi=170, metadata={'Date': None} if suffix == '.svg' else None)
+        path = FIG/(name+suffix)
+        fig.savefig(path, dpi=170, metadata={'Date': None} if suffix == '.svg' else None)
+        if suffix == '.svg':
+            # 与仓库*.svg eol=lf一致，避免Windows绘图换行导致队友克隆后哈希不符。
+            path.write_bytes(path.read_bytes().replace(b'\r\n', b'\n'))
     plt.close(fig)
 
 
@@ -332,6 +336,7 @@ def main():
     records, summary = load_and_verify()
     if args.verify:
         saved = json.loads(TABLE.read_text(encoding='utf-8'))
+        assert saved['生成脚本_SHA256'] == sha256(Path(__file__).read_bytes()).hexdigest()
         for key, value in summary.items():
             assert saved[key] == value, key
         for rel, expected in saved['图表_SHA256'].items():
