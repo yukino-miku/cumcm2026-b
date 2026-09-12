@@ -20,6 +20,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Circle
 from PIL import Image
+from q4_archive_sources import matches_source, verify_manifest
 from analyze_q4_practice_4 import (matching_logs, public_header, audit_actions, audit_trace,
                                   read, write, digest, relative, is_fixed, RESULT_KEYS, COLORS)
 from build_q4_inner13_assets import setup_font
@@ -224,7 +225,7 @@ def collect():
             if request['path']=='/measure':assert event['示向度']==responses[rid].get('svd_deg')
         meta=r['运行来源']
         assert meta['Git提交']=='d4dfa86597d8e66a92c6e4fbb5da46464f0c6464' and meta['Git工作区干净']
-        for name,value in meta['源码_SHA256'].items():assert digest(ROOT/name)==value,name
+        for name,value in meta['源码_SHA256'].items():assert matches_source(ROOT,name,value),name
         assert r['配置']==read(ROOT/'configs/q4_geometric_spacing.json')
         assert folder_problem==4 and np.allclose(r['固定站坐标'],search_stations(),rtol=0,atol=1e-8)
         number=official['problem_no'];counts[number]+=1
@@ -430,7 +431,7 @@ def main():
         assert analyze(r)==r['诊断'];assert extra_analysis(r['结果'])==r['间距与覆盖诊断']
         if args.source_check:
             for path,value in r['来源SHA256'].items():assert digest(ROOT/path)==value,path
-            for path,value in r['结果']['运行来源']['源码_SHA256'].items():assert digest(ROOT/path)==value,path
+            for path,value in r['结果']['运行来源']['源码_SHA256'].items():assert matches_source(ROOT,path,value),path
     new=[r for r in runs if r['题号']==4];old=[read(OLD_MODELS/f'P4-{i}.json') for i in range(1,7)]
     assert {r['官方结果']['case_code'] for r in new}.isdisjoint(r['官方结果']['case_code'] for r in old)
     data={'数据范围':'6局第四问＋1局第三问，七局实际均运行第四问13站100米间距脚本；只读演练，不是同地图对照',
@@ -438,7 +439,8 @@ def main():
           '逐局摘要':[{'编号':r['编号'],'题号':r['题号'],'案例码':r['官方结果']['case_code'],
                     **{k:r['诊断'][k] for k in ['目标数','清除数','实际全清','路程_米','时间_秒','时间分项_秒','补测无信号次数','检测用途次数','扫描后清除数','阶段及移动用途']}} for r in runs]}
     if args.verify:
-        assert read(TABLE)==data;assert read(MANIFEST)==manifest(runs)
+        assert read(TABLE)==data
+        saved=read(MANIFEST);assert saved.keys()==manifest(runs).keys();verify_manifest(ROOT,saved)
         for path in FIG.glob('*'):
             if path.suffix=='.png':
                 with Image.open(path) as im:im.verify()

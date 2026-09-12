@@ -89,7 +89,7 @@ def test_directional_undiscovered_sources_are_not_silently_searched_outside():
 
 
 @pytest.mark.parametrize('spacing', [None, 0, 200])
-def test_withdrawn_zigzag_http_entry_uses_original_strategy(tmp_path, spacing):
+def test_withdrawn_zigzag_http_entry_uses_current_geometry_and_preserves_zero_restore(tmp_path, spacing):
     # 仅本机临时HTTP服务，不连接官方模拟器。通过真实入口验证协议和结果文件。
     env = LocalEnvironment([Source(c, (0, 0), 1000, 0 if c % 2 else None) for c in range(1, 17)])
 
@@ -121,8 +121,11 @@ def test_withdrawn_zigzag_http_entry_uses_original_strategy(tmp_path, spacing):
             result = json.loads((output/'运行结果.json').read_text(encoding='utf-8'))
             assert result['流程正常完成'] and result['全部完成证据']
             assert '离线真值核验' not in result and result['运行来源']['源码_SHA256']
-            assert result['配置']['localization_detour_limit_m'] == 400
+            assert result['配置']['localization_detour_limit_m'] == (400 if spacing == 0 else 800)
             assert result['配置']['probe_spacing_m'] == (100 if spacing is None else spacing)
+            assert result['运行来源']['策略入口'] == ('spacing' if spacing == 0 else 'feedback')
+            if spacing != 0:
+                assert result['配置']['direction_feedback'] and result['配置']['small_sweep_limit'] == 4
             assert 'zigzag_forward_m' not in result['配置']
             assert '折线' not in result['方案']
             assert '折线方案已按用户要求撤回' in process.stdout
@@ -130,5 +133,4 @@ def test_withdrawn_zigzag_http_entry_uses_original_strategy(tmp_path, spacing):
         finally:
             server.shutdown()
             thread.join(timeout=5)
-
 

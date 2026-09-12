@@ -7,6 +7,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from PIL import Image
+from q4_archive_sources import verify_manifest
 
 from evaluate_q4_spacing import ROOT, TABLE, RUNS, read, dump, sources
 from build_q4_inner13_assets import setup_font
@@ -176,7 +177,9 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--verify',action='store_true');args=p.parse_args()
     data=read(TABLE);assert len(data['逐局'])==80
     if args.verify:
-        assert read(MANIFEST)==manifest()
+        saved = read(MANIFEST)
+        assert saved.keys() == manifest().keys()
+        verify_manifest(ROOT, saved)
         for p in FIG.glob('*'):
             if p.suffix=='.png':
                 with Image.open(p) as im:im.verify()

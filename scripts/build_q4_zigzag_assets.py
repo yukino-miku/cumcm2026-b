@@ -418,12 +418,15 @@ def manifest():
 
 
 def main():
+    from q4_archive_sources import verify_manifest
     p = argparse.ArgumentParser(description=__doc__); p.add_argument('--verify', action='store_true'); args = p.parse_args()
     table, runs, totals = load_all()
     detail = diagnostics(table, runs, totals)
     if args.verify:
         assert read(DETAIL) == detail
-        assert read(MANIFEST) == manifest()
+        saved = read(MANIFEST)
+        assert saved.keys() == manifest().keys()
+        verify_manifest(ROOT, saved)
         for path in FIG.glob('*'):
             if path.suffix == '.png':
                 with Image.open(path) as im: im.verify()
