@@ -1,4 +1,5 @@
 """运行并核验12个第四问本地构造，输出中文轨迹、费用图和报告；无官方接口调用。"""
+from q4_archive_sources import matches_source
 import argparse
 from hashlib import sha256
 import json
@@ -149,7 +150,7 @@ def load_and_verify():
         record = json.loads(path.read_text(encoding='utf-8'))
         assert record['构造编号'] == i and record['构造名称'] == spec[0]
         for rel, expected in record['运行来源']['源码_SHA256'].items():
-            assert sha256((ROOT/rel).read_bytes()).hexdigest() == expected, rel
+            assert matches_source(ROOT, rel, expected), rel
         counts = verify_run(record)
         for key in aggregate:
             aggregate[key] += counts[key]
@@ -336,11 +337,11 @@ def main():
     records, summary = load_and_verify()
     if args.verify:
         saved = json.loads(TABLE.read_text(encoding='utf-8'))
-        assert saved['生成脚本_SHA256'] == sha256(Path(__file__).read_bytes()).hexdigest()
+        assert matches_source(ROOT, Path(__file__).relative_to(ROOT).as_posix(), saved['生成脚本_SHA256'])
         for key, value in summary.items():
             assert saved[key] == value, key
         for rel, expected in saved['图表_SHA256'].items():
-            assert sha256((ROOT/rel).read_bytes()).hexdigest() == expected, rel
+            assert matches_source(ROOT, rel, expected), rel
     else:
         plot_all(records)
         summary['图表_SHA256'] = {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in sorted(FIG.glob('*')) if p.suffix in {'.png', '.svg'}}

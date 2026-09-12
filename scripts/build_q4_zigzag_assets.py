@@ -231,6 +231,8 @@ def documents(table, detail):
     common_percent = (1-common_b['平均虚拟时间_秒']/common_a['平均虚拟时间_秒'])*100
     text = r'''# 第四问折线补测：实现、对照实验与运行
 
+> 状态更新：用户已撤回折线方案。本文及图表仅作历史试验记录，旧`run_q4_zigzag.py`现已转入当前几何方案，默认试用100米补测间距，见[撤回后的当前说明](撤回折线_几何补测间距.md)；下文折线运行命令不再运行历史折线策略。原运行入口已逐字节归档于`docs/第四问/历史代码/run_q4_zigzag_ccb0ad5.py.txt`。
+
 本轮按用户示意实现“沿有效测向前进、左右交替设点”，并测试增大400米绕行门槛。**折线显著减少无信号补测与尾程，但独立验证多漏3个源，不能认定全面优于原版。** 新版作为独立试验入口；原入口与配置保留。
 
 ## 1. 当前版本与试验结论
@@ -390,6 +392,8 @@ Set-Location 'D:\mywork\code\cumcm2026-b'
     REPORT.write_text(text, encoding='utf8', newline='\n')
     paper = '''# 第四问折线补测实验：论文备用材料
 
+> 状态：折线方案已按用户要求撤回。以下为历史试验材料，不作为当前执行方案。
+
 以下结果来自本地构造对照，不能写成官方测试成绩或完整区域覆盖证明。实现与公式见[实验完整说明](../../docs/第四问/折线补测_对照实验与运行.md)。
 
 针对定向干扰导致的重复无信号补测，构造由最近有效测向锚定的交替折线路径。每次有效观测后更新锚点与方向，在纵向推进的同时保留侧向基线；一对试探均未获得新方向时按0.4比例缩短步长。位置外包随正向观测更新，负向反馈保留未知距离与发射朝向的歧义。补测仍受单次路线增量门槛约束，定位清除与固定站顺序使用原调度机制。
@@ -408,7 +412,7 @@ Set-Location 'D:\mywork\code\cumcm2026-b'
 
 def manifest():
     paths = list(MODELS.rglob('*.json.gz'))+list(FIG.glob('*'))+[TABLE, DETAIL, REPORT, PAPER,
-        ROOT/'scripts/evaluate_q4_zigzag.py', Path(__file__), ROOT/'scripts/run_q4_zigzag.py',
+        ROOT/'scripts/evaluate_q4_zigzag.py', Path(__file__), ROOT/'docs/第四问/历史代码/run_q4_zigzag_ccb0ad5.py.txt',
         ROOT/'configs/q4_zigzag.json', ROOT/'tests/test_q4_zigzag.py']+[ROOT/p for p in sources()]
     return {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
 

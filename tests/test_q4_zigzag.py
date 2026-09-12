@@ -88,7 +88,8 @@ def test_directional_undiscovered_sources_are_not_silently_searched_outside():
     assert all(e.get('用途') != '追加测向' for e in result['动作记录'])
 
 
-def test_zigzag_http_entry_records_detour_override(tmp_path):
+@pytest.mark.parametrize('spacing', [None, 0, 200])
+def test_withdrawn_zigzag_http_entry_uses_original_strategy(tmp_path, spacing):
     # 仅本机临时HTTP服务，不连接官方模拟器。通过真实入口验证协议和结果文件。
     env = LocalEnvironment([Source(c, (0, 0), 1000, 0 if c % 2 else None) for c in range(1, 17)])
 
@@ -114,14 +115,17 @@ def test_zigzag_http_entry_records_detour_override(tmp_path):
             output = tmp_path/'http-result'
             process = subprocess.run([sys.executable, '-X', 'utf8', str(root/'scripts/run_q4_zigzag.py'),
                 '--mode', 'http', '--robot-id', 'local-robot', '--base-url', f'http://127.0.0.1:{server.server_port}',
-                '--detour-limit', '800', '--output', str(output)], cwd=root, capture_output=True, text=True, encoding='utf-8', timeout=40)
+                *(['--probe-spacing', str(spacing)] if spacing is not None else []),
+                '--output', str(output)], cwd=root, capture_output=True, text=True, encoding='utf-8', timeout=40)
             assert process.returncode == 0, process.stdout+process.stderr
             result = json.loads((output/'运行结果.json').read_text(encoding='utf-8'))
             assert result['流程正常完成'] and result['全部完成证据']
             assert '离线真值核验' not in result and result['运行来源']['源码_SHA256']
-            assert result['配置']['localization_detour_limit_m'] == 800
-            assert result['配置']['zigzag_forward_m'] == 200
-            assert '折线' in result['方案']
+            assert result['配置']['localization_detour_limit_m'] == 400
+            assert result['配置']['probe_spacing_m'] == (100 if spacing is None else spacing)
+            assert 'zigzag_forward_m' not in result['配置']
+            assert '折线' not in result['方案']
+            assert '折线方案已按用户要求撤回' in process.stdout
             assert (output/'请求响应日志.jsonl').exists()
         finally:
             server.shutdown()

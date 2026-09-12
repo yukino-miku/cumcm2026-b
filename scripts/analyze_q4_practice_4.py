@@ -2,6 +2,7 @@
 """分析目录4的既有演练，关联HTTP记录，归档脱敏动作并绘制中文轨迹；不调用模拟器。"""
 from __future__ import annotations
 
+from q4_archive_sources import matches_source
 import argparse
 from collections import Counter, defaultdict
 from datetime import datetime
@@ -132,7 +133,7 @@ def collect():
             meta = original['运行来源']
             assert meta['Git提交'] == 'eec554a91e4df12bb88de1d751b43396e707e41d' and meta['Git工作区干净']
             for name, value in meta['源码_SHA256'].items():
-                assert digest(ROOT / name) == value, name
+                assert matches_source(ROOT, name, value), name
             assert np.allclose(record['固定站坐标'], search_stations(), rtol=0, atol=1e-8)
         record['诊断'] = analyze(record)
         write(MODELS / (label + '.json'), record)
@@ -439,7 +440,7 @@ def verify_sources(runs):
             assert digest(ROOT / name) == expected, name
         if run['题号'] == 4:
             for name, expected in run['结果']['运行来源']['源码_SHA256'].items():
-                assert digest(ROOT / name) == expected, name
+                assert matches_source(ROOT, name, expected), name
 
 
 def main():
@@ -463,7 +464,7 @@ def main():
         verify_sources(runs)
     if args.verify:
         for name, expected in {**old['图表SHA256'], **old['分析代码SHA256'], **old['报告SHA256']}.items():
-            assert digest(ROOT / name) == expected, name
+            assert matches_source(ROOT, name, expected), name
         print('核验通过：15局脱敏动作与费用、6局第四问外包与清除证书、图表及报告哈希。')
         return
     figures = plot(runs)

@@ -13,11 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'src'))
 from cumcm2026_b.q3_protocol import RobotClient, HttpTransport
 from cumcm2026_b.q4_local_env import make_case
-from cumcm2026_b.q4_strategy import SchemeFour, Q4Config
+from cumcm2026_b.q4_spacing_strategy import SpacedFour as SchemeFour, SpacingConfig as Q4Config
 
 
 def provenance():
-    files = list((ROOT/'src/cumcm2026_b').glob('*.py')) + [ROOT/'scripts/run_q4.py', ROOT/'configs/q4_inner13.json']
+    files = list((ROOT/'src/cumcm2026_b').glob('*.py')) + [ROOT/'scripts/run_q4.py', ROOT/'configs/q4_geometric_spacing.json']
     result = {'源码_SHA256': {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in sorted(files)}}
     try:
         result['Git提交'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
@@ -39,9 +39,10 @@ def main():
     parser.add_argument('--error', choices=['hash', 'zero', 'plus', 'minus', 'alternating'], default='hash')
     parser.add_argument('--directional-fraction', type=float, default=.5)
     parser.add_argument('--orientation', choices=['random', 'outward', 'inward', 'tangent'], default='random')
+    parser.add_argument('--probe-spacing', type=float, help='优先拉开的相邻补测站间距（米）；0恢复未加间距的原几何选点')
     parser.add_argument('--no-opportunistic', action='store_true')
     parser.add_argument('--no-route-planning', action='store_true')
-    parser.add_argument('--config', type=Path, default=ROOT/'configs/q4_inner13.json')
+    parser.add_argument('--config', type=Path, default=ROOT/'configs/q4_geometric_spacing.json')
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
     if args.mode == 'http' and not args.robot_id:
@@ -49,6 +50,8 @@ def main():
     if not 0 <= args.directional_fraction <= 1:
         parser.error('--directional-fraction必须在0和1之间')
     parameters = json.loads(args.config.read_text(encoding='utf-8'))
+    if args.probe_spacing is not None:
+        parameters['probe_spacing_m'] = args.probe_spacing
     if args.no_opportunistic:
         parameters['opportunistic'] = False
     if args.no_route_planning:
