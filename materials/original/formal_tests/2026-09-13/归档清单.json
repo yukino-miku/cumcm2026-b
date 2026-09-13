@@ -1,0 +1,269 @@
+{
+  "说明": "18个正式文件加12份原始HTTP/策略结果，逐字节原样归档；ZIP避免Git换行转换。",
+  "文件": [
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "http/F3-1/请求响应日志.jsonl",
+      "原始路径": "local-only/第三问/http-ca565cded5e7/请求响应日志.jsonl",
+      "字节数": 191518,
+      "SHA256": "e61d112933e9532b67768b3bcd45d4dbae3afe37827892bbaf5725757676d06f"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "http/F3-1/运行结果.json",
+      "原始路径": "local-only/第三问/http-ca565cded5e7/运行结果.json",
+      "字节数": 212904,
+      "SHA256": "ffc72d3583976c278d19f3b262c654e728a5890975187654dde3eaf22ac9217a"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "http/F3-2/请求响应日志.jsonl",
+      "原始路径": "local-only/第三问/http-329b992a9408/请求响应日志.jsonl",
+      "字节数": 183646,
+      "SHA256": "3bfc440815f4d7a907f43645fc11e8e4391a78553fde7db54375ef3e89eb09e5"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "http/F3-2/运行结果.json",
+      "原始路径": "local-only/第三问/http-329b992a9408/运行结果.json",
+      "字节数": 200959,
+      "SHA256": "b81843c0c358bfe6dbc819f16b84365263113b04bac4764c875d335291263fd1"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "http/F3-3/请求响应日志.jsonl",
+      "原始路径": "local-only/第三问/http-3d32178c0530/请求响应日志.jsonl",
+      "字节数": 205169,
+      "SHA256": "5696e39f845defee969bbedb58eefda4d2ed600a720b7f7a6f6ae597b3709edf"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "http/F3-3/运行结果.json",
+      "原始路径": "local-only/第三问/http-3d32178c0530/运行结果.json",
+      "字节数": 235209,
+      "SHA256": "51bfdc51e8752a9b7d755155355074e68a2fdbcd731b09790d1932d47ab1bff2"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-attempt-a39b9779bfb2f0e9-p3-1-25JF-58ZD-WZUU-VGW3.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-attempt-a39b9779bfb2f0e9-p3-1-25JF-58ZD-WZUU-VGW3.json",
+      "字节数": 148,
+      "SHA256": "79625a91ebee5710ca8a8770370d2083aaf7e0252a196d235f976a32da43a4b0"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-attempt-a39b9779bfb2f0e9-p3-2-H36R-KYWW-PCQ7-VFKN.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-attempt-a39b9779bfb2f0e9-p3-2-H36R-KYWW-PCQ7-VFKN.json",
+      "字节数": 148,
+      "SHA256": "ef6f2ecc844534b9e506ba471e2e2d0e1a513683983bc33c6356c75e5e8a745d"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-attempt-a39b9779bfb2f0e9-p3-3-2FP4-6P3M-98QY-RJEC.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-attempt-a39b9779bfb2f0e9-p3-3-2FP4-6P3M-98QY-RJEC.json",
+      "字节数": 148,
+      "SHA256": "0651f0f122e23fc3ff6cffac05d14140dbbf4fa1544d32ec02fef4f17630b1d0"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-p3-1-25JF-58ZD-WZUU-VGW3.jlog",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-p3-1-25JF-58ZD-WZUU-VGW3.jlog",
+      "字节数": 114732,
+      "SHA256": "6aa4481f16b8d37c931b74e2b30f3d55f7c6d23e566c9eeca508870bbafce4ce"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-p3-1-25JF-58ZD-WZUU-VGW3.result.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-p3-1-25JF-58ZD-WZUU-VGW3.result.json",
+      "字节数": 230,
+      "SHA256": "549964f0f2f8e00fac95f45be7cad1578d4f43cf40ece92d5c6a55e32fd852c1"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-p3-2-H36R-KYWW-PCQ7-VFKN.jlog",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-p3-2-H36R-KYWW-PCQ7-VFKN.jlog",
+      "字节数": 109208,
+      "SHA256": "782e4fced1c012f44625e6ec823e0c31e5b796be8eb34a526354d6d9cee5de9a"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-p3-2-H36R-KYWW-PCQ7-VFKN.result.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-p3-2-H36R-KYWW-PCQ7-VFKN.result.json",
+      "字节数": 230,
+      "SHA256": "05f6a55ef0aa26f12679f00884cf3213b624758f1be3910794e94a85c5de05eb"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-p3-3-2FP4-6P3M-98QY-RJEC.jlog",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-p3-3-2FP4-6P3M-98QY-RJEC.jlog",
+      "字节数": 109802,
+      "SHA256": "6a9316b754d22530e38b07ddb7203f4cfa493b8b35189c2888f6600104c4495e"
+    },
+    {
+      "ZIP": "q3form.zip",
+      "包内路径": "q3form/formal-p3-3-2FP4-6P3M-98QY-RJEC.result.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q3form/formal-p3-3-2FP4-6P3M-98QY-RJEC.result.json",
+      "字节数": 230,
+      "SHA256": "a169ed7db88bf72e8867f4a015558aacbdb7941b759f2a6933d5e969a27b6a65"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "http/F4-1/请求响应日志.jsonl",
+      "原始路径": "local-only/第四问/http-f053bed48f99/请求响应日志.jsonl",
+      "字节数": 317854,
+      "SHA256": "19e75abfa45d4a808a7876bc1facc24caa628e4211019be3e4998de14e00bd73"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "http/F4-1/运行结果.json",
+      "原始路径": "local-only/第四问/http-f053bed48f99/运行结果.json",
+      "字节数": 339661,
+      "SHA256": "2581d4c65d0d7c5defa23b9bb3fdd7f421703e42025e17a8cccdfebb85112e48"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "http/F4-2/请求响应日志.jsonl",
+      "原始路径": "local-only/第四问/http-12f5d9eb6dc9/请求响应日志.jsonl",
+      "字节数": 248547,
+      "SHA256": "b69e3194e0ca29af86ea863130cff4eb26be9e7f5667cba7d23a512c0bdf94f5"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "http/F4-2/运行结果.json",
+      "原始路径": "local-only/第四问/http-12f5d9eb6dc9/运行结果.json",
+      "字节数": 281939,
+      "SHA256": "9f51a68d886f8ba92f6c828f5ec407a901e8c5f1a867f518812851e8c07cb71f"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "http/F4-3/请求响应日志.jsonl",
+      "原始路径": "local-only/第四问/http-f9f57e5e30ea/请求响应日志.jsonl",
+      "字节数": 299958,
+      "SHA256": "5053ccd791d9b74af8693ffa7cbd19f12569574e1da098a7ec1c1515745f171d"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "http/F4-3/运行结果.json",
+      "原始路径": "local-only/第四问/http-f9f57e5e30ea/运行结果.json",
+      "字节数": 310988,
+      "SHA256": "ddfdaf98379f86fd5fd25f28047f5e9d1146e73f7dfe64b681cdb77a43f5a417"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-attempt-a39b9779bfb2f0e9-p4-1-2YBS-Y9BB-RTM6-YJFV.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-attempt-a39b9779bfb2f0e9-p4-1-2YBS-Y9BB-RTM6-YJFV.json",
+      "字节数": 148,
+      "SHA256": "ca5ad04169f84b941bf7a367f345f666d2049ee7a277590abc8f24ac9cf041ae"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-attempt-a39b9779bfb2f0e9-p4-2-C6AX-446N-FT7J-FZN7.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-attempt-a39b9779bfb2f0e9-p4-2-C6AX-446N-FT7J-FZN7.json",
+      "字节数": 148,
+      "SHA256": "4f5a2652b0fa372016fda5da88594eb2d16c5c5880a66ffeef9205893343930f"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-attempt-a39b9779bfb2f0e9-p4-3-YFRA-6UAF-YQK5-K2XP.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-attempt-a39b9779bfb2f0e9-p4-3-YFRA-6UAF-YQK5-K2XP.json",
+      "字节数": 148,
+      "SHA256": "ad6c74445d58d6df84d917d0a70fdd4921f36855df5dabf730b3a8a4697bb631"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-p4-1-2YBS-Y9BB-RTM6-YJFV.jlog",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-p4-1-2YBS-Y9BB-RTM6-YJFV.jlog",
+      "字节数": 126466,
+      "SHA256": "1d6732cc78bd4ea41d59b40464457c1f915cde2f3c16edadbff58e9643b9d5d4"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-p4-1-2YBS-Y9BB-RTM6-YJFV.result.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-p4-1-2YBS-Y9BB-RTM6-YJFV.result.json",
+      "字节数": 230,
+      "SHA256": "b8e46bee55831b634ac2354deb3550b9f329ec87170cb070dea8f32cd27239d6"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-p4-2-C6AX-446N-FT7J-FZN7.jlog",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-p4-2-C6AX-446N-FT7J-FZN7.jlog",
+      "字节数": 113330,
+      "SHA256": "b55dcf6ca510383637387c7d09c9d748f1c107c4650a6ad67751ace8d5a18b46"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-p4-2-C6AX-446N-FT7J-FZN7.result.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-p4-2-C6AX-446N-FT7J-FZN7.result.json",
+      "字节数": 230,
+      "SHA256": "7ef5e3904b6225daa7e8916fe0c4e6f5cc50e7c46e24e6c6fd4a674e3a83f465"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-p4-3-YFRA-6UAF-YQK5-K2XP.jlog",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-p4-3-YFRA-6UAF-YQK5-K2XP.jlog",
+      "字节数": 131209,
+      "SHA256": "313fb3347fa3cee7d78bd82f99283418c46136bed8c51916abacd55558e26f1f"
+    },
+    {
+      "ZIP": "q4form.zip",
+      "包内路径": "q4form/formal-p4-3-YFRA-6UAF-YQK5-K2XP.result.json",
+      "原始路径": "materials/original/simulator/CUMCM2026B/Jammers-simulator-win64/Jammers-simulator/JammersSimulatorData/behavior-logs/q4form/formal-p4-3-YFRA-6UAF-YQK5-K2XP.result.json",
+      "字节数": 230,
+      "SHA256": "f4d315a273b3f703e8555812a811a846e6e5841ecdffe6045d8c78b002389e31"
+    }
+  ],
+  "运行关联": [
+    {
+      "编号": "F3-1",
+      "ZIP": "q3form.zip",
+      "正式包内路径": "q3form/formal-p3-1-25JF-58ZD-WZUU-VGW3.jlog",
+      "HTTP内目录": "http/F3-1",
+      "关联本地目录": "local-only/第三问/http-ca565cded5e7",
+      "生成减退出响应_毫秒": 2.0
+    },
+    {
+      "编号": "F3-2",
+      "ZIP": "q3form.zip",
+      "正式包内路径": "q3form/formal-p3-2-H36R-KYWW-PCQ7-VFKN.jlog",
+      "HTTP内目录": "http/F3-2",
+      "关联本地目录": "local-only/第三问/http-329b992a9408",
+      "生成减退出响应_毫秒": 2.0
+    },
+    {
+      "编号": "F3-3",
+      "ZIP": "q3form.zip",
+      "正式包内路径": "q3form/formal-p3-3-2FP4-6P3M-98QY-RJEC.jlog",
+      "HTTP内目录": "http/F3-3",
+      "关联本地目录": "local-only/第三问/http-3d32178c0530",
+      "生成减退出响应_毫秒": 2.0
+    },
+    {
+      "编号": "F4-1",
+      "ZIP": "q4form.zip",
+      "正式包内路径": "q4form/formal-p4-1-2YBS-Y9BB-RTM6-YJFV.jlog",
+      "HTTP内目录": "http/F4-1",
+      "关联本地目录": "local-only/第四问/http-f053bed48f99",
+      "生成减退出响应_毫秒": 3.0
+    },
+    {
+      "编号": "F4-2",
+      "ZIP": "q4form.zip",
+      "正式包内路径": "q4form/formal-p4-2-C6AX-446N-FT7J-FZN7.jlog",
+      "HTTP内目录": "http/F4-2",
+      "关联本地目录": "local-only/第四问/http-12f5d9eb6dc9",
+      "生成减退出响应_毫秒": 4.0
+    },
+    {
+      "编号": "F4-3",
+      "ZIP": "q4form.zip",
+      "正式包内路径": "q4form/formal-p4-3-YFRA-6UAF-YQK5-K2XP.jlog",
+      "HTTP内目录": "http/F4-3",
+      "关联本地目录": "local-only/第四问/http-f9f57e5e30ea",
+      "生成减退出响应_毫秒": 3.0
+    }
+  ],
+  "ZIP_SHA256": {
+    "q3form.zip": "7533a217a30717abcd1b10c9a4c512def5deb90dd52cf84cc7bcc8e929401cb1",
+    "q4form.zip": "b993878a233fa89a8fdf66c0b9b786fd37c19dc020577162574d687b6ea7ed7f"
+  }
+}
